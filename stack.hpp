@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include <memory>
 #include <vector>
 
 namespace ft
@@ -17,34 +16,27 @@ namespace ft
 	public: 
 		typedef	_Container									container_type;
 		typedef typename container_type::value_type			value_type;
-		typedef typename container_type::reference			reference;
-		typedef typename container_type::const_reference	const_reference;
 		typedef typename container_type::size_type			size_type;
+	/* ----- attributes ----- */
 	protected:
 		container_type	c;
 	/* ----- public memmber function ----- */
 	public:
 		/* ----- Constructors ----- */
-		stack() : c() {}; //real stack throws exception if c is non constructable
-		stack(const stack &_s) : c(_s.c) { };
-		//stack(container_type const &_c) : c(_c) { };
-		explicit stack(const container_type& _c) : c(_c) { }; //explicit ?
-		// also has allocator construction (not there yet!);
+		explicit stack(const container_type& _c = container_type()) { }; //explicit ?
+
 		/* ----- Deconstructor ----- */
 		~stack() {};
 
 		/* ----- get functions ----- */
-		bool 			empty() const {return(c.empty());};
-		size_type		size()  const {return(c.size());};
-		reference		top()         {return(c.back());};
-		const_reference	top()   const {return(c.back());};
+		bool 				empty() const {return(c.empty());};
+		size_type			size()  const {return(c.size());};
+		value_type&			top()         {return(c.back());};
+		const value_type&	top()   const {return(c.back());};
 
 		/* ----- change functions ----- */
 		void			push(const value_type& _v) {c.push_back(_v);};
 		void			pop(){c.pop_back();};
-
-		/* ----- Operators ----- */
-		stack& operator=(const stack& _s) {c = _s.c; return *this;};
 	};
 	/* ---- non member operators ----- */
 	template <class T, class Container>

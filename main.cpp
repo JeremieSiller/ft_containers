@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 #include <deque>
-#if 0 //CREATE A REAL STL EXAMPLE
-	#include <map>
+#if 1 //CREATE A REAL STL EXAMPLE
+	//#include <map>
 	#include <stack>
-	#include <vector>
+	//#include <vector>
 	namespace ft = std;
 #else
 	//#include <map.hpp>
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 
 	//ft::vector<std::string> vector_str;
 	//ft::vector<int> vector_int;
-	ft::stack<int, std::vector<int> > stack_int;
+	ft::stack<char> stack_int;
 	//ft::vector<Buffer> vector_buffer;
 	//ft::stack<Buffer, std::deque<Buffer> > stack_deq_buffer;
 	// ft::map<int, int> map_int;
@@ -105,9 +105,14 @@ int main(int argc, char** argv) {
 	// {
 	// 	ft::map<int, int> copy = map_int;
 	// }
+	ft::stack<int> test;
+
 	MutantStack<char> iterable_stack;
 	for (char letter = 'a'; letter <= 'z'; letter++)
+	{
+		stack_int.push(letter + 1);
 		iterable_stack.push(letter);
+	}
 	for (MutantStack<char>::iterator it = iterable_stack.begin(); it != iterable_stack.end(); it++)
 	{
 		std::cout << *it;
