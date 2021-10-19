@@ -38,12 +38,23 @@ namespace ft {
 		vector (const vector& x);
 	/* ----- Public member functions ---- */
 	public:
+		/* --- iterators --- */
+		iterator				begin()				;
+		const_iterator			begin()		const	;
+		iterator				end()				;
+		const_iterator			end()		const	;
+		reverse_iterator		rbegin()			;
+		const_reverse_iterator	rbegin()	const	;
+		reverse_iterator		rend()				;
+		const_reverse_iterator	rend()		const	;
+
 		/* --- capacity --- */
 		size_type	size ()													const;
 		size_type	max_size ()												const;
 		void		resize (size_type n, value_type val = value_type());
 		size_type	capacity ()												const;
 		void		reserve (size_type n);
+
 		/* --- Element acces --- */
 		reference			operator[] (size_type n);
 		const_reference		operator[] (size_type n) const;
@@ -51,6 +62,7 @@ namespace ft {
 		const_reference		at (size_type n) const;
 		reference			front (size_type n);
 		const_reference		front (size_type n) const;
+
 		/* --- modifiers -- */
 		template <class InputIterator>
 			void		assign (InputIterator first, InputIterator last);
