@@ -34,10 +34,10 @@ namespace ft {
 		explicit vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0), _data(NULL), a() { };
 
 		explicit vector (size_type n, const value_type& val = value_type(),
-		 				 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
-		 					_data = a.allocate(n);
+						 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
+							_data = a.allocate(n);
 							memset(_data, 0, sizeof(value_type) * n);
-		 				 };			
+						 };			
 
 		// template <class InputIterator>
 		// 	vector (InputIterator first, InputIterator last,
@@ -47,6 +47,8 @@ namespace ft {
 			_data = a.allocate(_capacity);
 			memcpy(_data, x._data, _size * sizeof(value_type));
 		}
+	/* ----- Deconstructor ----- */
+	~vector() {a.deallocate(_data, _capacity);}
 	/* ----- Public member functions ---- */
 	public:
 		/* --- iterators --- */
