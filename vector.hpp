@@ -35,7 +35,7 @@ namespace ft {
 
 		explicit vector (size_type n, const value_type& val = value_type(),
 		 				 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
-		 					_data = a.allocate(n, _data);
+		 					_data = a.allocate(n);
 							memset(_data, 0, sizeof(value_type) * n);
 		 				 };			
 
@@ -43,7 +43,11 @@ namespace ft {
 		// 	vector (InputIterator first, InputIterator last,
 		// 			const allocator_type& alloc = allocator_type());
 
-		// vector (const vector& x);
+		vector (const vector& x) : _size(x._size), _capacity(x._capacity), a(x.a) { 
+			a.destroy(_data);
+			_data = a.allocate(_capacity);
+			memcpy(_data, x._data, _size * sizeof(value_type));
+		}
 	/* ----- Public member functions ---- */
 	public:
 		/* --- iterators --- */
@@ -64,12 +68,12 @@ namespace ft {
 		void		reserve (size_type n);
 
 		/* --- Element acces --- */
-		reference			operator[] (size_type n);
-		const_reference		operator[] (size_type n) const;
-		reference			at (size_type n);
-		const_reference		at (size_type n) const;
-		reference			front (size_type n);
-		const_reference		front (size_type n) const;
+		reference			operator[] (size_type n)			{ return _data[n]; };
+		const_reference		operator[] (size_type n)	const	{ return _data[n]; };
+		reference			at (size_type n)					{ return _data[n]; };
+		const_reference		at (size_type n)			const	{ return _data[n]; };
+		reference			front ( )							{ return _data[0]; };
+		const_reference		front ( )					const	{ return _data[0]; };
 
 		/* --- modifiers -- */
 		template <class InputIterator>
