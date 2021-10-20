@@ -44,7 +44,6 @@ namespace ft {
 		// 			const allocator_type& alloc = allocator_type());
 
 		vector (const vector& x) : _size(x._size), _capacity(x._capacity), a(x.a) { 
-			a.destroy(_data);
 			_data = a.allocate(_capacity);
 			memcpy(_data, x._data, _size * sizeof(value_type));
 		}
