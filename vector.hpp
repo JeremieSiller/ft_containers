@@ -69,17 +69,17 @@ namespace ft {
 		void		reserve (size_type n);
 
 		/* --- Element acces --- */
-		reference			operator[] (size_type n)			{ return _data[n]; };
-		const_reference		operator[] (size_type n)	const	{ return _data[n]; };
-		reference			at (size_type n)					{ return _data[n]; };
-		const_reference		at (size_type n)			const	{ return _data[n]; };
-		reference			front ( )							{ return _data[0]; };
-		const_reference		front ( )					const	{ return _data[0]; };
+		reference			operator[] (size_type n)			{ return _data[n]; }
+		const_reference		operator[] (size_type n)	const	{ return _data[n]; }
+		reference			at (size_type n)					{ return _data[n]; }
+		const_reference		at (size_type n)			const	{ return _data[n]; }
+		reference			front ( )							{ return _data[0]; }
+		const_reference		front ( )					const	{ return _data[0]; }
 
 		/* --- modifiers -- */
-		template <class InputIterator>
-			void		assign (InputIterator first, InputIterator last);
-		void			assign (size_type n, const value_type& val);
+		// template <class InputIterator>
+		// 	void		assign (InputIterator first, InputIterator last);
+		void			assign (size_type n, value_type const & val) { _data[n] = val; }
 		void			push_back (const value_type& val);
 		void			pop_back ();
 		// iterator		insert (iterator position, const value_type& val);
