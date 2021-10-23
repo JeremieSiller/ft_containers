@@ -9,14 +9,6 @@
 #include <vector>
 #include "iterator.hpp"
 
-template<typename T>
-class VectorIterator {
-public:
-	typedef typename vector::value_type value_type;
-public:
-	VectorIterator()
-};
-
 namespace ft {
 	template<
 	    class T,
@@ -31,8 +23,8 @@ namespace ft {
 		typedef typename	allocator_type::const_reference				const_reference;
 		typedef typename	allocator_type::pointer						pointer;
 		typedef typename	allocator_type::const_pointer				const_pointer;
-		typedef 			ft::vec_iterator<pointer>					iterator;
-		typedef 			ft::vec_iterator<const_pointer>				const_iterator;
+		typedef 			ft::vec_iterator<vector<T> >				iterator;
+		typedef 			ft::const_vec_iterator<vector<T> >			const_iterator;
 		typedef				ft::reverse_iterator<iterator>				reverse_iterator;
 		typedef				ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 		typedef typename	allocator_type::size_type					size_type;
@@ -49,6 +41,10 @@ namespace ft {
 		explicit vector (size_type n, const value_type& val = value_type(),
 						 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n), a(alloc) {
 							_data = a.allocate(n);
+							for (size_t i = 0; i  < _size; i++)
+							{
+								a.construct(_data + i, val);
+							}
 						 };			
 
 		// template <class InputIterator >
@@ -78,10 +74,10 @@ namespace ft {
 	/* ----- Public member functions ---- */
 	public:
 		/* --- iterators --- */
-		iterator				begin() { return iterator(_data); 		};
-		// const_iterator			begin()		const	;
-		iterator				end()	{ return iterator(_data + _size)};
-		// const_iterator			end()		const	;
+		const_iterator			begin()		const	{ return const_iterator(_data);			};
+		const_iterator			end()		const	{ return const_iterator(_data + _size);	};
+		iterator				begin() 			{ return iterator(_data); 				};
+		iterator				end()				{ return iterator(_data + _size);		};
 		// reverse_iterator		rbegin()			;
 		// const_reverse_iterator	rbegin()	const	;
 		// reverse_iterator		rend()				;

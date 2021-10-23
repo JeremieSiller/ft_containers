@@ -1,4 +1,4 @@
-#if 1
+#if 0
 	#include "vector.hpp"
 	#include <vector>
 #else
@@ -40,8 +40,7 @@ int	main(void) {
 	ft::vector<int>::iterator	end = test.end();
 	while (begin != end)
 	{
-		std::cout << *begin  << " ";
+		std::cout << *begin  << "";
+		begin++;
 	}
-	std::cout << std::endl;
-	
 }

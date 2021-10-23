@@ -55,7 +55,7 @@ git:
 	git add .
 	git commit -m "$(msg)"
 	git push
-	git push GitHub
+	git push vog
 
 re: fclean all
 
