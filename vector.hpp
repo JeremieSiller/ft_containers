@@ -6,6 +6,16 @@
 #include <iterator>
 #include <iostream>
 #include <string.h>
+#include <vector>
+#include "iterator.hpp"
+
+template<typename T>
+class VectorIterator {
+public:
+	typedef typename vector::value_type value_type;
+public:
+	VectorIterator()
+};
 
 namespace ft {
 	template<
@@ -15,14 +25,17 @@ namespace ft {
 	{
 	/* ---- Member types ----- */
 	public:
-		typedef 			T								value_type;
-		typedef 			Allocator						allocator_type;
-		typedef typename	allocator_type::reference		reference;
-		typedef typename	allocator_type::const_reference	const_reference;
-		typedef typename	allocator_type::pointer			pointer;
-		typedef typename	allocator_type::const_pointer	const_pointer;
-		// iterators missing
-		typedef typename	allocator_type::size_type		size_type;
+		typedef 			T											value_type;
+		typedef 			Allocator									allocator_type;
+		typedef typename	allocator_type::reference					reference;
+		typedef typename	allocator_type::const_reference				const_reference;
+		typedef typename	allocator_type::pointer						pointer;
+		typedef typename	allocator_type::const_pointer				const_pointer;
+		typedef 			ft::vec_iterator<pointer>					iterator;
+		typedef 			ft::vec_iterator<const_pointer>				const_iterator;
+		typedef				ft::reverse_iterator<iterator>				reverse_iterator;
+		typedef				ft::reverse_iterator<const_iterator>		const_reverse_iterator;
+		typedef typename	allocator_type::size_type					size_type;
 	/* ----- attributes ----- */
 	private:
 		size_type		_size;
@@ -31,30 +44,43 @@ namespace ft {
 		allocator_type	a;
 	/* ----- Constructors ---- */
 	public:
-		explicit vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0), _data(NULL), a() { };
+		explicit vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0), _data(NULL), a(alloc) { };
 
 		explicit vector (size_type n, const value_type& val = value_type(),
-						 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
+						 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n), a(alloc) {
 							_data = a.allocate(n);
-							memset(_data, 0, sizeof(value_type) * n);
 						 };			
 
-		// template <class InputIterator>
+		// template <class InputIterator >
 		// 	vector (InputIterator first, InputIterator last,
-		// 			const allocator_type& alloc = allocator_type());
+		// 			const allocator_type& alloc = allocator_type()) : _size(last - first), _capacity(last - first), _data(NULL), a(alloc){
+		// 				_data = a.allocate(_capacity);
+		// 				for (size_t i = 0; first != last; i++, first++)
+		// 				{
+		// 					_data[i] = (first);
+		// 				} // WORKING BUT SHOLD USE std::copy INSTEAD! Iterators need to be implemnted first!
+		// 			};
 
 		vector (const vector& x) : _size(x._size), _capacity(x._capacity), a(x.a) { 
 			_data = a.allocate(_capacity);
 			memcpy(_data, x._data, _size * sizeof(value_type));
 		}
 	/* ----- Deconstructor ----- */
-	~vector() {a.deallocate(_data, _capacity);}
+		~vector() {
+			if (_capacity > 0) {
+				for (size_t i = 0; i < _size; i++)
+				{
+					a.destroy(&(_data[i]));
+				}
+				a.deallocate(_data, _capacity);
+			}
+		}
 	/* ----- Public member functions ---- */
 	public:
 		/* --- iterators --- */
-		// iterator				begin()				;
+		iterator				begin() { return iterator(_data); 		};
 		// const_iterator			begin()		const	;
-		// iterator				end()				;
+		iterator				end()	{ return iterator(_data + _size)};
 		// const_iterator			end()		const	;
 		// reverse_iterator		rbegin()			;
 		// const_reverse_iterator	rbegin()	const	;
@@ -79,8 +105,32 @@ namespace ft {
 		/* --- modifiers -- */
 		// template <class InputIterator>
 		// 	void		assign (InputIterator first, InputIterator last);
-		void			assign (size_type n, value_type const & val) { _data[n] = val; }
-		void			push_back (const value_type& val);
+		void			assign (size_type n, value_type const & val) {
+			if (n > _capacity)
+			{
+				T	*tmp;
+				_capacity = n;
+				tmp = a.allocate(n);
+				memset(tmp, val, sizeof(value_type) * n); // not working needs to use copy (iterators)
+				a.deallocate(_data, _capacity);
+				_capacity = n;
+				_data = tmp;
+			}
+			else
+				memset(_data, val, sizeof(value_type) * n);
+		}
+		void			push_back (const value_type& val) {
+			if (_size + 1 > _capacity)
+			{
+				_capacity *= 2;
+				T	*tmp;
+				tmp = a.allocate(_capacity);
+				memcpy(tmp, _data, _size);
+				a.deallocate(_data, _capacity / 2);
+				_data = tmp;
+			}
+			_data[_size++] = val;
+		};
 		void			pop_back ();
 		// iterator		insert (iterator position, const value_type& val);
 	    // void			insert (iterator position, size_type n, const value_type& val);
@@ -89,7 +139,11 @@ namespace ft {
 		// iterator		erase (iterator position);
 		// iterator		erase (iterator first, iterator last);
 		void			swap (vector& x);
-		void			clear();
+		void			clear() {
+			for (size_t i = 0; i < _size; i++)
+				a.destroy(&(_data[i]));
+			_size = 0;
+		};
 		allocator_type	get_allocator() const;
 	};
 	/* ----- relational operators ----- */

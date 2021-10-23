@@ -28,7 +28,7 @@ all: $(NAME)
 	@echo $(G)"|_|  \__| \___\___/|_| |_|\__\__,_|_|_| |_|\___|_|  |___/";
 	@echo $(G)"      ______                                             ";
 	@echo $(G)"     |______|                                            ";
-	@echo $(B)"                                 by @nschumac & @jsiller ";
+	@echo $(B)"                                             by @jsiller ";
 
 $(NAME): $(OBJECTS)
 	@$(CC) $(CFLAGS) $(OBJECTS) -o $@

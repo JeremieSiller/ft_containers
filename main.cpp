@@ -4,7 +4,7 @@
 #if 1 //CREATE A REAL STL EXAMPLE
 	//#include <map>
 	#include <stack>
-	//#include <vector>
+	#include <vector>
 	namespace ft = std;
 #else
 	//#include <map.hpp>
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 	const int seed = atoi(argv[1]);
 	srand(seed);
 
-	//ft::vector<std::string> vector_str;
+	std::vector<std::string> vector_str;
 	//ft::vector<int> vector_int;
 	ft::stack<char> stack_int;
 	//ft::vector<Buffer> vector_buffer;
