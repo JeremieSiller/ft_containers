@@ -32,7 +32,7 @@ namespace ft {
 	private:
 		size_type		_size;
 		size_type		_capacity;
-		value_type		*_data;
+		pointer			_data;
 		allocator_type	a;
 	/* ----- Constructors ---- */
 	public:
@@ -88,7 +88,23 @@ namespace ft {
 		size_type	max_size ()												const {return (a.max_size());}
 		void		resize (size_type n, value_type val = value_type());
 		size_type	capacity ()												const {return (_capacity);};
-		void		reserve (size_type n);
+		void		reserve (size_type n) {
+			pointer	tmp;
+			if (n > max_size())
+				throw std::length_error("vector::reserve");
+			if (n > _capacity)
+			{
+				tmp = a.allocate(n);
+				for (size_t i = 0; i < _size; i++)
+				{
+					a.construct(tmp + i, _data[i]);
+					a.destroy(_data + i);
+				}
+				a.deallocate(_data, _capacity);
+				_data = tmp;
+				_capacity = n;
+			}
+		}
 
 		/* --- Element acces --- */
 		reference			operator[] (size_type n)			{ return _data[n]; }
@@ -101,20 +117,14 @@ namespace ft {
 		/* --- modifiers -- */
 		// template <class InputIterator>
 		// 	void		assign (InputIterator first, InputIterator last);
-		void			assign (size_type n, value_type const & val) {
-			if (n > _capacity)
-			{
-				T	*tmp;
-				_capacity = n;
-				tmp = a.allocate(n);
-				memset(tmp, val, sizeof(value_type) * n); // not working needs to use copy (iterators)
-				a.deallocate(_data, _capacity);
-				_capacity = n;
-				_data = tmp;
-			}
-			else
-				memset(_data, val, sizeof(value_type) * n);
-		}
+		// void			assign (size_type n, value_type const & val) {
+		// 	if (n < _capacity)
+		// 	{
+		// 		_data[n]
+		// 	}
+		// 	else
+		// 		memset(_data, val, sizeof(value_type) * n);
+		// }
 		void			push_back (const value_type& val) {
 			if (_size + 1 > _capacity)
 			{
@@ -140,7 +150,7 @@ namespace ft {
 				a.destroy(&(_data[i]));
 			_size = 0;
 		};
-		allocator_type	get_allocator() const { return a };
+		allocator_type	get_allocator() const { return a; };
 	};
 	/* ----- relational operators ----- */
 	template <class T, class Alloc>
