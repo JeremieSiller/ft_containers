@@ -140,7 +140,7 @@ namespace ft {
 				a.destroy(&(_data[i]));
 			_size = 0;
 		};
-		allocator_type	get_allocator() const;
+		allocator_type	get_allocator() const { return a };
 	};
 	/* ----- relational operators ----- */
 	template <class T, class Alloc>

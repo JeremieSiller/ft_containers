@@ -39,6 +39,9 @@ namespace ft {
 				return *_ptr;
 			}
 			bool	operator!=(const vec_iterator& other) const {
+				return (_ptr == other._ptr);
+			}
+			bool	operator!=(const vec_iterator& other) const {
 				return (_ptr != other._ptr);
 			}
 		private:
@@ -85,7 +88,10 @@ namespace ft {
 			reference	operator*() const {
 				return *_ptr;
 			}
-			bool	operator!=(const const_vec_iterator& other) const {
+			bool	operator==(const const_vec_iterator& other) const {
+				return (_ptr != other._ptr);
+			}
+			bool	operator==(const const_vec_iterator& other) const {
 				return (_ptr != other._ptr);
 			}
 		private:
@@ -110,6 +116,7 @@ namespace ft {
 			pointer				operator->()										{ return _ptr;									}
 			reference			operator*()											{ return *_ptr; 								}
 			bool				operator!=	(const rev_vec_iterator& other) const	{ return (_ptr != other._ptr);					}
+			bool				operator==	(const rev_vec_iterator& other) const	{ return (_ptr != other._ptr);					}
 		private:
 			pointer	_ptr;
 		};
@@ -151,6 +158,9 @@ namespace ft {
 			}
 			reference	operator*() const {
 				return *_ptr;
+			}
+			bool	operator==(const const_rev_vec_iterator& other) const {
+				return (_ptr == other._ptr);
 			}
 			bool	operator!=(const const_rev_vec_iterator& other) const {
 				return (_ptr != other._ptr);
