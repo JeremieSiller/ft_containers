@@ -1,11 +1,10 @@
-// #if 0
-// 	#include "vector.hpp"
-// 	#include <vector>
-// #else
-// 	#include <vector>
-// 	namespace ft = std;
-// #endif
-// #include <iostream>
+#if 1
+	#include "vector.hpp"
+#else
+	#include <vector>
+	namespace ft = std;
+#endif
+#include <iostream>
 
 // int	main(void) {
 // 	// ft::vector<int> test(1000);
@@ -46,9 +45,6 @@
 // 	}
 // }
 
-#include <iostream>
-#include "vector.hpp"
-
 int main ()
 {
 	ft::vector<int> test(100, 1);
@@ -56,15 +52,15 @@ int main ()
 	test.reserve(200);
 	std::cout << test.size() << std::endl;
 	std::cout << test.capacity() << std::endl;
-	test.clear();
-	std::cout << test.size() << std::endl;
-	std::cout << test.capacity() << std::endl;
-//   for (int i=0; i<100; ++i) {
-//     bar.push_back(i);
-//     if (sz!=bar.capacity()) {
-//       sz = bar.capacity();
-//       std::cout << "capacity changed: " << sz << '\n';
-//     }
-//   }
+	// test.clear();
+	// std::cout << test.size() << std::endl;
+	// std::cout << test.capacity() << std::endl;
+	test.push_back(-69);
+	std::cout << *(--test.end())<< std::endl;
+	std::cout << test.end() - test.begin() << std::endl;
+	std::cout << test.end().base() - test.begin().base() << std::endl;
+	test.resize(300, 2);
+	std::cout << test.end().base() - test.begin().base() << std::endl;
+	std::cout << *(--test.end()) << std::endl;
   return 0;
 }

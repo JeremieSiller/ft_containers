@@ -11,6 +11,8 @@ namespace ft {
 			typedef typename	vector::pointer			pointer;
 		public:
 			vec_iterator(pointer ptr) : _ptr(ptr) { };
+
+			pointer		base() const { return _ptr; }
 			vec_iterator& operator++() {
 				_ptr++;
 				return *this;
@@ -47,7 +49,11 @@ namespace ft {
 		private:
 			pointer	_ptr;
 		};
-	
+		template<typename v>
+		int	operator-(vec_iterator<v> const &l, vec_iterator<v> const &r) { // change to differnce type
+			return (l.base() - r.base());
+		}
+
 	/*
 	** @brief: const iterator
 	** nearly the same as it. Not able to change stuff in vector tho.

@@ -86,7 +86,6 @@ namespace ft {
 		/* --- capacity --- */
 		size_type	size ()													const {return (_size);}
 		size_type	max_size ()												const {return (a.max_size());}
-		void		resize (size_type n, value_type val = value_type());
 		size_type	capacity ()												const {return (_capacity);};
 		void		reserve (size_type n) {
 			pointer	tmp;
@@ -105,6 +104,24 @@ namespace ft {
 				_capacity = n;
 			}
 		}
+		void		resize (size_type n, value_type val = value_type()) {
+			if (n > _size)
+			{
+				if (n > _capacity)
+					reserve(n);
+				for ( ; _size < n; _size++)
+				{
+					a.construct(_data + _size , val);
+				}
+			}
+			else
+			{
+				for ( ; _size > n; _size--)
+				{
+					a.destroy(_data + _size);
+				}
+			}
+		};
 
 		/* --- Element acces --- */
 		reference			operator[] (size_type n)			{ return _data[n]; }
