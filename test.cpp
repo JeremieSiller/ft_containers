@@ -6,6 +6,21 @@
 #endif
 #include <iostream>
 
+struct int_
+{
+	private:
+		int	i;
+	public:
+		int_(): i(-1) { }
+		int	get() { return (i); }
+};
+
+std::ostream	&operator<<(std::ostream &o, int_ i) {
+	o << i.get();
+	return o;
+}
+
+
 // int	main(void) {
 // 	// ft::vector<int> test(1000);
 
@@ -47,20 +62,28 @@
 
 int main ()
 {
-	ft::vector<int> test(100, 1);
+	ft::vector<int_> test(100);
 
-	test.reserve(200);
-	std::cout << test.size() << std::endl;
-	std::cout << test.capacity() << std::endl;
-	// test.clear();
+	ft::vector<int_>::const_iterator begin = test.begin();
+	ft::vector<int_>::const_iterator end = test.end();
+	while (begin != end)
+	{
+		std::cout << *begin << " ";
+		begin++;
+	}
+	std::cout << std::endl;
+	
 	// std::cout << test.size() << std::endl;
 	// std::cout << test.capacity() << std::endl;
-	test.push_back(-69);
-	std::cout << *(--test.end())<< std::endl;
-	std::cout << test.end() - test.begin() << std::endl;
-	std::cout << test.end().base() - test.begin().base() << std::endl;
-	test.resize(300, 2);
-	std::cout << test.end().base() - test.begin().base() << std::endl;
-	std::cout << *(--test.end()) << std::endl;
+	// // test.clear();
+	// // std::cout << test.size() << std::endl;
+	// // std::cout << test.capacity() << std::endl;
+	// //test.push_back(-69);
+	// std::cout << *(--test.end())<< std::endl;
+	// std::cout << test.end() - test.begin() << std::endl;
+	// std::cout << test.end().base() - test.begin().base() << std::endl;
+	// //test.resize(300, 2);
+	// std::cout << test.end().base() - test.begin().base() << std::endl;
+	// std::cout << *(--test.end()) << std::endl;
   return 0;
 }

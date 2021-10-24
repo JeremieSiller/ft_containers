@@ -41,7 +41,7 @@ namespace ft {
 		explicit vector (size_type n, const value_type& val = value_type(),
 						 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n), a(alloc) {
 							_data = a.allocate(n);
-							for (size_t i = 0; i  < _size; i++)
+							for (size_type i = 0; i < _size; i++)
 							{
 								a.construct(_data + i, val);
 							}
@@ -59,15 +59,15 @@ namespace ft {
 
 		vector (const vector& x) : _size(x._size), _capacity(x._capacity), a(x.a) { 
 			_data = a.allocate(_capacity);
-			memcpy(_data, x._data, _size * sizeof(value_type));
+			for (size_type i = 0; i < _size; i++)
+			{
+				a.construct(_data + i, value_type());
+			}
 		}
 	/* ----- Deconstructor ----- */
 		~vector() {
 			if (_capacity > 0) {
-				for (size_t i = 0; i < _size; i++)
-				{
-					a.destroy(&(_data[i]));
-				}
+				clear();
 				a.deallocate(_data, _capacity);
 			}
 		}
@@ -94,7 +94,7 @@ namespace ft {
 			if (n > _capacity)
 			{
 				tmp = a.allocate(n);
-				for (size_t i = 0; i < _size; i++)
+				for (size_type i = 0; i < _size; i++)
 				{
 					a.construct(tmp + i, _data[i]);
 					a.destroy(_data + i);
@@ -163,7 +163,7 @@ namespace ft {
 		// iterator		erase (iterator first, iterator last);
 		void			swap (vector& x);
 		void			clear() {
-			for (size_t i = 0; i < _size; i++)
+			for (size_type i = 0; i < _size; i++)
 				a.destroy(&(_data[i]));
 			_size = 0;
 		};
