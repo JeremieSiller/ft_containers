@@ -25,8 +25,8 @@ namespace ft {
 		typedef typename	allocator_type::const_pointer				const_pointer;
 		typedef 			ft::vec_iterator<vector<T> >				iterator;
 		typedef 			ft::const_vec_iterator<vector<T> >			const_iterator;
-		typedef				ft::reverse_iterator<iterator>				reverse_iterator;
-		typedef				ft::reverse_iterator<const_iterator>		const_reverse_iterator;
+		typedef				ft::rev_vec_iterator<vector<T> >			reverse_iterator;
+		typedef				ft::const_rev_vec_iterator<vector<T> >		const_reverse_iterator;
 		typedef typename	allocator_type::size_type					size_type;
 	/* ----- attributes ----- */
 	private:
@@ -74,14 +74,14 @@ namespace ft {
 	/* ----- Public member functions ---- */
 	public:
 		/* --- iterators --- */
-		const_iterator			begin()		const	{ return const_iterator(_data);			};
-		const_iterator			end()		const	{ return const_iterator(_data + _size);	};
-		iterator				begin() 			{ return iterator(_data); 				};
-		iterator				end()				{ return iterator(_data + _size);		};
-		// reverse_iterator		rbegin()			;
-		// const_reverse_iterator	rbegin()	const	;
-		// reverse_iterator		rend()				;
-		// const_reverse_iterator	rend()		const	;
+		const_iterator			begin()		const	{ return const_iterator(_data);							};
+		const_iterator			end()		const	{ return const_iterator(_data + _size);					};
+		iterator				begin() 			{ return iterator(_data); 								};
+		iterator				end()				{ return iterator(_data + _size);						};
+		reverse_iterator		rbegin()			{ return reverse_iterator(_data + (_size - 1));			};
+		const_reverse_iterator	rbegin()	const	{ return const_reverse_iterator(_data + (_size - 1));	};
+		reverse_iterator		rend()				{ return reverse_iterator(_data - 1);					};
+		const_reverse_iterator	rend()		const	{ return const_reverse_iterator(_data - 1);				};
 
 		/* --- capacity --- */
 		size_type	size ()													const {return (_size);}

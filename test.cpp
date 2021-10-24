@@ -36,8 +36,9 @@ int	main(void) {
 	// test3.push_back(69);
 	// std::cout << test3.capacity() << std::endl;
 	ft::vector<int> test(1000, 1);
-	ft::vector<int>::iterator	begin = test.begin();
-	ft::vector<int>::iterator	end = test.end();
+	ft::vector<int>::reverse_iterator	begin = test.rbegin();
+	ft::vector<int>::reverse_iterator	end = test.rend();
+	*end = 10;
 	while (begin != end)
 	{
 		std::cout << *begin  << "";
