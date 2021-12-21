@@ -7,7 +7,8 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
-#include "iterator.hpp"
+#include "utils/iterator.hpp"
+#include "utils/utils.hpp"
 #include <bits/cpp_type_traits.h>
 // #include <type_traits>
 
@@ -52,14 +53,14 @@ namespace ft {
 
 		template <typename InputIterator >
 			vector (InputIterator first, InputIterator last,
-					const allocator_type& alloc = allocator_type()) : _size(last - first), _capacity(last - first), _data(NULL), a(alloc){
+					const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0), _data(NULL), a(alloc){
 						typedef typename std::__is_integer<InputIterator>::__type _Integral;
 						_M_initialize_dispatch(first, last, _Integral());
-						// _data = a.allocate(_capacity);
-						// for (size_t i = 0; first != last; i++, first++)
-						// {
-						// 	a.construct(_data + i, *(first));
-						// }
+						_data = a.allocate(_capacity);
+						for (size_t i = 0; first != last; i++, first++)
+						{
+							a.construct(_data + i, *(first));
+						}
 					};
 
 		vector (const vector& x) : _size(x._size), _capacity(x._capacity), a(x.a) { 
