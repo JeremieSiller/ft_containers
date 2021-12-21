@@ -8,6 +8,9 @@
 #include <string.h>
 #include <vector>
 #include "iterator.hpp"
+#include <bits/cpp_type_traits.h>
+// #include <type_traits>
+
 
 namespace ft {
 	template<
@@ -47,15 +50,17 @@ namespace ft {
 							}
 						 };			
 
-		// template <class InputIterator >
-		// 	vector (InputIterator first, InputIterator last,
-		// 			const allocator_type& alloc = allocator_type()) : _size(last - first), _capacity(last - first), _data(NULL), a(alloc){
-		// 				_data = a.allocate(_capacity);
-		// 				for (size_t i = 0; first != last; i++, first++)
-		// 				{
-		// 					_data[i] = (first);
-		// 				} // WORKING BUT SHOLD USE std::copy INSTEAD! Iterators need to be implemnted first!
-		// 			};
+		template <typename InputIterator >
+			vector (InputIterator first, InputIterator last,
+					const allocator_type& alloc = allocator_type()) : _size(last - first), _capacity(last - first), _data(NULL), a(alloc){
+						typedef typename std::__is_integer<InputIterator>::__type _Integral;
+						_M_initialize_dispatch(first, last, _Integral());
+						// _data = a.allocate(_capacity);
+						// for (size_t i = 0; first != last; i++, first++)
+						// {
+						// 	a.construct(_data + i, *(first));
+						// }
+					};
 
 		vector (const vector& x) : _size(x._size), _capacity(x._capacity), a(x.a) { 
 			_data = a.allocate(_capacity);

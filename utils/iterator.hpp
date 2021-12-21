@@ -105,7 +105,7 @@ namespace ft {
 		};
 	/*
 	** @brief: reversed iterator
-	** increment iterators are reversed
+	** increment operators work reversed, begin is the end and end the begin
 	*/
 	template<typename vector>
 		class	rev_vec_iterator {
