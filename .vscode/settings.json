@@ -65,6 +65,10 @@
 		"vector": "cpp",
 		"*.tcc": "cpp",
 		"fstream": "cpp",
-		"memory_resource": "cpp"
+		"memory_resource": "cpp",
+		"clocale": "cpp",
+		"list": "cpp",
+		"numeric": "cpp",
+		"random": "cpp"
 	}
 }

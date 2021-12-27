@@ -9,7 +9,7 @@
 
 int main() {
 
-	std::vector<int> st(100);
+	std::vector<char> st(100);
 
 	std::vector<int>::iterator begin = st.begin();
 	std::vector<int>::iterator end = st.end();
