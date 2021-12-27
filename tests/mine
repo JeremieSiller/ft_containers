@@ -1,0 +1,470 @@
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 10
+size: 10
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 22
+size: 22
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, 97
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 23
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 22
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 21
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 20
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 19
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 18
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 17
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 16
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 15
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 14
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 13
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 12
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 11
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 10
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 9
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 8
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 7
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 6
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 5
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 4
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 3
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10, 10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 2
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+10
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 1
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+Printing all vector values: 
+
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 0
+max_size: 4611686018427387903
+begin: 10
+-------------------------------
+try out of range: (-1)
+doesnt throw error
+-------------------------------
+try out of range: (size)
+throws error
+-------------------------------
+printing front value: 
+front: 10
+-------------------------------
+terminate called after throwing an instance of 'std::length_error'
+  what():  vector
