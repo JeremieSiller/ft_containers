@@ -77,15 +77,7 @@ int	main(void)
 	}
 	print_vector<int>(x);
 	x.assign(5, 3);
-	try {
-		x.assign(INT_MAX, -10);
-	}
-	catch (std::exception const &e){
-		std::cerr << e.what() << std::endl;
-		std::cerr << e.what() << std::endl;
-		std::cerr << e.what() << std::endl;
-		std::cerr << e.what() << std::endl;
-		std::cerr << e.what() << std::endl;
-	}
+	print_vector<int>(x);
+	x.insert(++(x.end()), 10);
 	print_vector<int>(x);
 }

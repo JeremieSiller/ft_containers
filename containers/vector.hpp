@@ -185,10 +185,26 @@ namespace ft {
 			_a.destroy(_end);
 			_size--;
 		}
-		iterator		insert (iterator position, const value_type& val)					;
+		// does not segfault when position is behind end like vector does, dont know how to do that tho.
+		iterator		insert (iterator position, const value_type& val) {
+			// for (i = 0; _start + i != position; i++)
+			// 	
+			size_t	j;
+			if ( _size >= _capacity)
+				reserve(_size + 1);
+			for (j = _size + 1; iterator(_start + j) != position; j--)
+			{
+				_a.construct(_start + j, *(_start + j - 1));
+				_a.destroy(_start + j - 1);
+			}
+			_a.construct(_start + j, val);
+			_size++;
+			_end++;
+			return(iterator(_start + j));
+		}
 		void			insert (iterator position, size_type n, const value_type& val)		;
-		template <class InputIterator>
-			void		insert (iterator position, InputIterator first, InputIterator last)	;
+		// template <class InputIterator>
+		// 	void		insert (iterator position, InputIterator first, InputIterator last)	;
 		iterator		erase (iterator position)											;
 		iterator		erase (iterator first, iterator last)								;
 		void			swap (vector& x)													;
