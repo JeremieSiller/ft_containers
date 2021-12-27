@@ -63,6 +63,6 @@ void	print_vector(vector<T> const &test)
 int	main(void)
 {
 	vector<int>	x(10, 10);
-	x.resize(ULLONG_MAX, -10);
+	x.resize(22, -10);
 	print_vector<int>(x);
 }

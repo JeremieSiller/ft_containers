@@ -126,8 +126,12 @@ namespace ft {
 			}
 			else if (n > _size)
 			{
-				size_type	cap = _capacity;
-				reserve(n);
+				if (n > _capacity)
+				{
+					reserve(_capacity * 2);
+					if (n > _capacity)
+						reserve(n);
+				}
 				for (size_t i = _size; i < n; i++)
 				{
 					_a.construct(_end, val);
