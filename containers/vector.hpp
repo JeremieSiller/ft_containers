@@ -128,8 +128,9 @@ namespace ft {
 			{
 				if (n > _capacity)
 				{
-					reserve(_capacity * 2);
-					if (n > _capacity)
+					if (n <= _capacity * 2)
+						reserve(_capacity * 2);
+					else
 						reserve(n);
 				}
 				for (size_t i = _size; i < n; i++)
@@ -158,13 +159,32 @@ namespace ft {
 		reference			front ()												{ return *_start; }
 		const_reference		front ()										const	{ return *_start; };
 
-		allocator_type	get_allocator() const												;
+		allocator_type	get_allocator() const										{ return _a;} ;
 		/* --- modifiers -- */
-		template <class InputIterator>
-			void		assign (InputIterator first, InputIterator last)					;
-		void			assign (size_type n, value_type const & val)						;
-		void			push_back (const value_type& val)									;
-		void			pop_back ()															;
+		// template <class InputIterator>
+		// 	void		assign (InputIterator first, InputIterator last)					;
+		void			assign (size_type n, value_type const & val) {
+			if (n > max_size())
+				throw (std::length_error("vector"));
+			size_t	i;
+			for (i = 0; i < n && i < _size; i++)
+			{
+				_a.destroy(_start + i);
+				_a.construct(_start + i, val);
+			}
+			if (i < n)
+			{
+				resize(n, val);
+			}
+		}
+		void			push_back (const value_type& val) {
+			resize(_size + 1, val);
+		}
+		void			pop_back () {
+			_end--;
+			_a.destroy(_end);
+			_size--;
+		}
 		iterator		insert (iterator position, const value_type& val)					;
 		void			insert (iterator position, size_type n, const value_type& val)		;
 		template <class InputIterator>
