@@ -11,7 +11,8 @@
 #include <bits/stl_iterator_base_funcs.h>
 #include <stdexcept>
 #include <utility>
-// #include <type_traits>
+#include <algorithm>
+#include <type_traits>
 
 
 namespace ft {
@@ -64,8 +65,14 @@ namespace ft {
 					_end++;
 				}
 			}
-		// template <typename InputIterator >
-		// 	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
+		template <typename InputIterator,
+			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
+			>
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) {
+				reserve(std::distance(first, last));
+				_end = _start + std::distance(first, last);
+				std::copy(first, last, iterator(_start));
+		}
 
 		vector (const vector& x) :
 			_capacity(x._capacity), _start(), _end(), _a(x._a) {
@@ -161,8 +168,38 @@ namespace ft {
 
 		allocator_type	get_allocator() const										{ return _a;} ;
 		/* --- modifiers -- */
-		// template <class InputIterator>
-		// 	void		assign (InputIterator first, InputIterator last)					;
+		template <class InputIterator,
+			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
+		>
+			void		assign (InputIterator first, InputIterator last) {
+				if (std::distance(first, last) > max_size())
+					throw std::length_error("vector");
+				size_t	i;
+				for (i = 0; i < size() && first != last; i++, first++)
+				{
+					_a.destroy(_start + i);
+					_a.construct(_start + i, *first);
+				}
+				if (i < size())
+				{
+					_end = _start + i;
+					for (; i < size(); i++)
+					{
+						_a.destroy(_start + i);
+					}
+				}
+				if (first != last)
+				{
+					reserve(std::distance(first, last) + i);
+					while (first != last)
+					{
+						_a.construct(_end, *first);
+						_end++;
+						first++;
+					}
+				}
+			}
+
 		void			assign (size_type n, value_type const & val) {
 			if (n > max_size())
 				throw (std::length_error("vector"));
@@ -172,10 +209,7 @@ namespace ft {
 				_a.destroy(_start + i);
 				_a.construct(_start + i, val);
 			}
-			if (i < n)
-			{
-				resize(n, val);
-			}
+			resize(n, val);
 		}
 		void			push_back (const value_type& val) {
 			resize(size() + 1, val);
@@ -202,12 +236,39 @@ namespace ft {
 		void			insert (iterator position, size_type n, const value_type& val) {
 			if (n > max_size() || size() + n > max_size())
 				throw std::length_error("vector");
-			resize(size() + n);
-			std::copy(position, iterator(_end + n), position + n);
-			std::fill(position, position + n, val);
+			size_type	dist = std::distance(begin(), position);
+			size_type	old_end = size();
+			reserve(size() + n);
+			for (size_t i = size(); i < size() + n; i++)
+			{
+				_a.construct(_start + i);
+			}
+			std::copy(begin() + dist, begin() + old_end, begin() + dist + n);
+			std::fill(begin() + dist, begin() + dist + n, val);
+			_end += n;
 		};
-		// template <class InputIterator>
-		// 	void		insert (iterator position, InputIterator first, InputIterator last)	;
+		template <class InputIterator,
+			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
+			>
+			void		insert (iterator position, InputIterator first, InputIterator last) {
+				size_type n = std::distance(first, last);
+				if (n > max_size() || size() + n > max_size())
+					throw std::length_error("vector");
+				size_type dist = std::distance(begin(), position);
+				size_type old_end = size();
+				reserve(size() + n);
+				for (size_t i = size(); i < size() + n; i++)
+				{
+					_a.construct(_start + i);
+				}
+				std::copy(begin() + dist, begin() + old_end, begin() + dist + n);
+				for (size_t i = 0; i < n; i++)
+				{
+					*(_start + dist + i) = *first;
+					first++;
+				}
+				_end += n;
+			}
 		iterator		erase (iterator position) {
 			erase(position, ++position);
 			return(--position);
@@ -267,22 +328,7 @@ namespace ft {
 			}
 	template <class T, class Alloc>
 		bool operator< (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-			typename vector<T,Alloc>::const_iterator	start_lhs = lhs.begin();
-			typename vector<T,Alloc>::const_iterator	start_rhs = rhs.begin();
-			typename vector<T,Alloc>::const_iterator	end_rhs = rhs.end();
-			typename vector<T,Alloc>::const_iterator	end_lhs = lhs.end();
-			while (start_rhs != end_rhs && start_lhs != end_lhs)
-			{
-				if (*start_rhs > *start_lhs)
-					return (true);
-				else if (*start_rhs < *start_lhs)
-					return (false);
-				start_rhs++;
-				start_lhs++;
-			}
-			if (start_rhs != end_rhs)
-				return(true);
-			return (false);
+			return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 		}
 	template <class T, class Alloc>
 			bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
