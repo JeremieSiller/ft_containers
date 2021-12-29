@@ -18,11 +18,11 @@ $(TARGET): $(SRC) $(HPP) $(TARGET_REAL) $(TARGET_MINE)
 	cat $@
 $(TARGET_REAL): $(SRC) $(HPP)
 	$(CC) $(CFLAGS) $(SRC) -o $@_exec
-	./$@_exec > $(TARGET_REAL)
+	-./$@_exec > $(TARGET_REAL)
 
 $(TARGET_MINE): $(SRC) $(HPP)
-	$(CC) $(CFLAGS) $(FTFLAG) $(SRC) -o $@_exec
-	./$@_exec > $(TARGET_MINE)
+	$(CC) $(FTFLAG) $(SRC) -o $@_exec
+	-./$@_exec > $(TARGET_MINE)
 
 clean:
 	rm -f $(TARGET_MINE) $(TARGET_REAL) $(TARGET_REAL)_exec $(TARGET_MINE)_exec
