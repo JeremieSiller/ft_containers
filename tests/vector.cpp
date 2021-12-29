@@ -176,4 +176,7 @@ int	main(void)
 	d.insert(d.end() - 4, t.begin(), t.end());
 	d.insert(d.end() - 4, t.begin(), t.end());
 	print_vector(d);
+	d.reserve(1000000);
+	d.resize(1231, 234);
+	d.resize(123100000, 234);
 }
