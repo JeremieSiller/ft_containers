@@ -99,7 +99,6 @@ int	main(void)
 	x.insert(--(x.end()), 1, 90);
 	print_vector(x);
 	std::cout << *x.insert(--x.end(), 33) << std::endl;
-	print_vector(x);
 	std::cout << *x.erase(--(x.end())) << std::endl;
 	print_vector(x);
 	std::cout << *x.erase(++x.begin(), --x.end()) << std::endl;
@@ -152,4 +151,29 @@ int	main(void)
 	std::cout << (t > x) << std::endl;
 	std::cout << (t >= x) << std::endl;
 	print_vector(t);
+	vector<int> d(t.begin(), t.end());
+	print_vector(d);
+	d.assign(x.begin(), x.end());
+	print_vector(d);
+	d.assign(t.begin(), t.end());
+	print_vector(d);
+	d.assign(3, 11);
+	print_vector(d);
+	d.insert(++d.begin(), 7, -4);
+	print_vector(d);
+	print_vector(t);
+	d.reserve(100);
+	d.insert(d.begin(), t.begin(), t.end());
+	print_vector(d);
+	d.insert(d.end(), t.begin(), t.end());
+	print_vector(d);
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	d.insert(d.end() - 4, t.begin(), t.end());
+	print_vector(d);
 }
