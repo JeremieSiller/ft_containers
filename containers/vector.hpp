@@ -68,7 +68,8 @@ namespace ft {
 		template <typename InputIterator,
 			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
 			>
-			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) {
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) :
+			_capacity(), _start(), _end(), _a(alloc) {
 				reserve(std::distance(first, last));
 				_end = _start + std::distance(first, last);
 				std::copy(first, last, iterator(_start));
@@ -164,7 +165,11 @@ namespace ft {
 			return *(_start + n); 
 		}
 		reference			front ()												{ return *_start; }
-		const_reference		front ()										const	{ return *_start; };
+		const_reference		front ()										const	{ return *_start; }
+		reference			back ()													{ return *(_end - 1); }
+		const_reference		back ()											const	{ return *(_end - 1); }
+
+		bool				empty()											const	{ return !size(); }
 
 		allocator_type	get_allocator() const										{ return _a;} ;
 		/* --- modifiers -- */
@@ -172,7 +177,7 @@ namespace ft {
 			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
 		>
 			void		assign (InputIterator first, InputIterator last) {
-				if (std::distance(first, last) > max_size())
+				if (static_cast<size_t>(std::distance(first, last)) > max_size())
 					throw std::length_error("vector");
 				size_t	i;
 				for (i = 0; i < size() && first != last; i++, first++)
@@ -220,17 +225,9 @@ namespace ft {
 		}
 
 		iterator		insert (iterator position, const value_type& val) {
-			size_t	j;
-			if ( size() >= _capacity)
-				reserve(size() + 1);
-			for (j = size() + 1; iterator(_start + j) != position; j--)
-			{
-				_a.construct(_start + j, *(_start + j - 1));
-				_a.destroy(_start + j - 1);
-			}
-			_a.construct(_start + j, val);
-			_end++;
-			return(iterator(_start + j));
+			size_t	d = std::distance(begin(), position);
+			insert(position, 1, val);
+			return(iterator(_start + d));
 		}
 
 		void			insert (iterator position, size_type n, const value_type& val) {
@@ -270,8 +267,7 @@ namespace ft {
 				_end += n;
 			}
 		iterator		erase (iterator position) {
-			erase(position, ++position);
-			return(--position);
+			return(erase(position, position + 1));
 		}
 		iterator		erase (iterator first, iterator last) {
 			iterator i = std::copy(last, end(), first);
@@ -280,7 +276,7 @@ namespace ft {
 				_a.destroy(p);
 			}
 			_end -= std::distance(first, last);
-			return last;
+			return iterator(first);
 		}
 		void			swap (vector& x) {
 			pointer		tmp_pointer = _end;
