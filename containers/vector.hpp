@@ -13,6 +13,8 @@
 #include <utility>
 #include <algorithm>
 #include <type_traits>
+#include "../utils/iterator.hpp"
+#include "../utils/utils.hpp"
 
 
 namespace ft {
@@ -29,8 +31,10 @@ namespace ft {
 		typedef typename	allocator_type::const_reference							const_reference;
 		typedef typename	allocator_type::pointer									pointer;
 		typedef typename	allocator_type::const_pointer							const_pointer;
-		typedef 			__gnu_cxx::__normal_iterator<pointer, vector>			iterator;
-		typedef 			__gnu_cxx::__normal_iterator<const_pointer, vector>		const_iterator;
+		typedef				ft::random_access_iterator<vector, value_type>				iterator;
+		typedef				ft::random_access_iterator<vector, const value_type>		const_iterator;
+		// typedef 			__gnu_cxx::__normal_iterator<pointer, vector>			iterator;
+		// typedef 			__gnu_cxx::__normal_iterator<const_pointer, vector>		const_iterator;
 		typedef 			std::reverse_iterator<const_iterator>					const_reverse_iterator;
 		typedef 			std::reverse_iterator<iterator>							reverse_iterator;
 		typedef typename	allocator_type::size_type								size_type;
@@ -69,9 +73,9 @@ namespace ft {
 			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
 			>
 			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) {
-				reserve(std::distance(first, last));
-				_end = _start + std::distance(first, last);
-				std::copy(first, last, iterator(_start));
+				reserve(ft::distance(first, last));
+				_end = _start + ft::distance(first, last);
+				ft::copy(first, last, iterator(_start));
 		}
 
 		vector (const vector& x) :
@@ -116,7 +120,7 @@ namespace ft {
 
 				new_start = _a.allocate(n);
 				new_end = new_start + size();
-				std::copy(iterator(_start), iterator(_end), new_start);
+				ft::copy(iterator(_start), iterator(_end), new_start);
 				clear();
 				_a.deallocate(_start, size());
 				_start = new_start;
@@ -172,7 +176,7 @@ namespace ft {
 			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
 		>
 			void		assign (InputIterator first, InputIterator last) {
-				if (std::distance(first, last) > max_size())
+				if (ft::distance(first, last) > max_size())
 					throw std::length_error("vector");
 				size_t	i;
 				for (i = 0; i < size() && first != last; i++, first++)
@@ -190,7 +194,7 @@ namespace ft {
 				}
 				if (first != last)
 				{
-					reserve(std::distance(first, last) + i);
+					reserve(ft::distance(first, last) + i);
 					while (first != last)
 					{
 						_a.construct(_end, *first);
@@ -236,32 +240,32 @@ namespace ft {
 		void			insert (iterator position, size_type n, const value_type& val) {
 			if (n > max_size() || size() + n > max_size())
 				throw std::length_error("vector");
-			size_type	dist = std::distance(begin(), position);
+			size_type	dist = ft::distance(begin(), position);
 			size_type	old_end = size();
 			reserve(size() + n);
 			for (size_t i = size(); i < size() + n; i++)
 			{
 				_a.construct(_start + i);
 			}
-			std::copy(begin() + dist, begin() + old_end, begin() + dist + n);
-			std::fill(begin() + dist, begin() + dist + n, val);
+			ft::copy(begin() + dist, begin() + old_end, begin() + dist + n);
+			ft::fill(begin() + dist, begin() + dist + n, val);
 			_end += n;
 		};
 		template <class InputIterator,
 			std::enable_if_t<!std::is_integral<InputIterator>::value, bool> = true
 			>
 			void		insert (iterator position, InputIterator first, InputIterator last) {
-				size_type n = std::distance(first, last);
+				size_type n = ft::distance(first, last);
 				if (n > max_size() || size() + n > max_size())
 					throw std::length_error("vector");
-				size_type dist = std::distance(begin(), position);
+				size_type dist = ft::distance(begin(), position);
 				size_type old_end = size();
 				reserve(size() + n);
 				for (size_t i = size(); i < size() + n; i++)
 				{
 					_a.construct(_start + i);
 				}
-				std::copy(begin() + dist, begin() + old_end, begin() + dist + n);
+				ft::copy(begin() + dist, begin() + old_end, begin() + dist + n);
 				for (size_t i = 0; i < n; i++)
 				{
 					*(_start + dist + i) = *first;
@@ -274,12 +278,12 @@ namespace ft {
 			return(--position);
 		}
 		iterator		erase (iterator first, iterator last) {
-			iterator i = std::copy(last, end(), first);
-			pointer p = _start + std::distance(i, iterator(_start));
+			iterator i = ft::copy(last, end(), first);
+			pointer p = _start + ft::distance(i, iterator(_start));
 			for (; p != _end; p++) {
 				_a.destroy(p);
 			}
-			_end -= std::distance(first, last);
+			_end -= ft::distance(first, last);
 			return last;
 		}
 		void			swap (vector& x) {
@@ -300,7 +304,7 @@ namespace ft {
 		};
 		vector& operator= (const vector& x) {
 			reserve(x.size());
-			std::copy(x.begin(), x.end(), begin());
+			ft::copy(x.begin(), x.end(), begin());
 			_end = _start + x.size();
 			return *this;
 		}
@@ -328,7 +332,7 @@ namespace ft {
 			}
 	template <class T, class Alloc>
 		bool operator< (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-			return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+			return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 		}
 	template <class T, class Alloc>
 			bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {

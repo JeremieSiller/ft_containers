@@ -1,0 +1,784 @@
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 10
+size: 10
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 22
+size: 22
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 97
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 23
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 22
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 21
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 20
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 19
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 18
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 17
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 16
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 15
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 14
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 13
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 12
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 11
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 10
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 9
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 8
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 7
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 6
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 5
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 4
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 3
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9, 9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 2
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+9
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 1
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 0
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 0
+max_size: 4611686018427387903
+begin: 9
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 9
+-------------------------------
+Printing all vector values: 
+3, 3, 3, 3, 3
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 5
+max_size: 4611686018427387903
+begin: 3
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 3
+-------------------------------
+Printing all vector values: 
+72, 3, 3, 3, 3, 3
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 6
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 73, 3, 3, 3, 3, 3
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 7
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 73, 3, 3, 3, 3, 3, 432
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 8
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 73, 3, 3, 3, 3, 3, 90, 432
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 9
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+33
+432
+Printing all vector values: 
+72, 73, 3, 3, 3, 3, 3, 90, 33
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 9
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+33
+Printing all vector values: 
+72, 33
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 2
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+33
+Printing all vector values: 
+72, 33
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 2
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33
+-------------------------------
+get stuff from vector: 
+capcity: 2
+size: 2
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353
+-------------------------------
+get stuff from vector: 
+capcity: 4
+size: 3
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323
+-------------------------------
+get stuff from vector: 
+capcity: 4
+size: 4
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312
+-------------------------------
+get stuff from vector: 
+capcity: 8
+size: 5
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 5
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312
+-------------------------------
+get stuff from vector: 
+capcity: 8
+size: 5
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+666
+72
+72
+666
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 8
+size: 6
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+666, 33, -2353, -2323, 12312
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 5
+max_size: 4611686018427387903
+begin: 666
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 666
+-------------------------------
+6
+5
+1
+0
+0
+1
+0
+1
+0
+1
+0
+1
+0
+1
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123, -123
+-------------------------------
+get stuff from vector: 
+capcity: 44
+size: 7
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+1
+0
+1
+1
+0
+0
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 8
+size: 6
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 6
+size: 6
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123, -123
+-------------------------------
+get stuff from vector: 
+capcity: 7
+size: 7
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 7
+size: 6
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+11, 11, 11
+-------------------------------
+get stuff from vector: 
+capcity: 7
+size: 3
+max_size: 4611686018427387903
+begin: 11
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 11
+-------------------------------
+Printing all vector values: 
+11, -4, -4, -4, -4, -4, -4, -4, 11, 11
+-------------------------------
+get stuff from vector: 
+capcity: 10
+size: 10
+max_size: 4611686018427387903
+begin: 11
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 11
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 8
+size: 6
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123, 11, -4, -4, -4, -4, -4, -4, -4, 11, 11
+-------------------------------
+get stuff from vector: 
+capcity: 100
+size: 16
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123, 11, -4, -4, -4, -4, -4, -4, -4, 11, 11, 72, 33, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 100
+size: 22
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
+Printing all vector values: 
+72, 33, -2353, -2323, 12312, -123, 11, -4, -4, -4, -4, -4, -4, -4, 11, 11, 72, 33, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, 72, 33, -2353, -2323, 12312, -123, -2353, -2323, 12312, -123
+-------------------------------
+get stuff from vector: 
+capcity: 100
+size: 70
+max_size: 4611686018427387903
+begin: 72
+-------------------------------
+try out of range: (-1)
+-------------------------------
+printing front value: 
+front: 72
+-------------------------------
