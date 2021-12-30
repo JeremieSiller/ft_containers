@@ -179,4 +179,22 @@ int	main(void)
 	d.reserve(1000000);
 	d.resize(1231, 234);
 	d.resize(123100000, 234);
+	d.resize(12, 44);
+	{
+		vector<int>::reverse_iterator	rbegin = d.rbegin();
+		vector<int>::reverse_iterator	rend = d.rend();
+		while (rbegin != rend)
+		{
+			std::cout << *rbegin << std::endl;
+			*rbegin = 2345;
+			rbegin++;
+		}
+	}
+	vector<int>::const_reverse_iterator	rbegin = d.rbegin();
+	vector<int>::const_reverse_iterator	rend = d.rend();
+	while (rbegin != rend)
+	{
+		std::cout << *rbegin << std::endl;
+		rbegin++;
+	}
 }
