@@ -1,6 +1,6 @@
 CC = clang++
 
-CFLAGS = -std=c++98
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -Wsign-compare
 
 FTFLAG = -D FT
 

@@ -31,8 +31,8 @@ namespace ft {
 		typedef typename	allocator_type::const_reference							const_reference;
 		typedef typename	allocator_type::pointer									pointer;
 		typedef typename	allocator_type::const_pointer							const_pointer;
-		typedef				ft::random_access_iterator<vector, value_type>				iterator;
-		typedef				ft::random_access_iterator<vector, const value_type>		const_iterator;
+		typedef				ft::random_access_iterator<value_type, vector>				iterator;
+		typedef				ft::random_access_iterator<const value_type, vector>		const_iterator;
 		typedef 			ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 		typedef 			ft::reverse_iterator<iterator>							reverse_iterator;
 		typedef typename	allocator_type::size_type								size_type;
@@ -177,7 +177,7 @@ namespace ft {
 		template <class InputIterator>
 			void		assign (InputIterator first, InputIterator last,
 				typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = true) {
-				if (ft::distance(first, last) > max_size())
+				if (static_cast<size_type>(ft::distance(first, last)) > max_size())
 					throw std::length_error("vector");
 				size_t	i;
 				for (i = 0; i < size() && first != last; i++, first++)
@@ -236,7 +236,7 @@ namespace ft {
 			size_type	dist = ft::distance(begin(), position);
 			size_type	old_end = size();
 			resize(size() + n);
-			ft::copy(begin() + dist, begin() + old_end, begin() + dist + n);
+			ft::backward_copy(begin() + dist, begin() + old_end, begin() + dist + n);
 			ft::fill(begin() + dist, begin() + dist + n, val);
 		};
 		template <class InputIterator>
@@ -247,25 +247,20 @@ namespace ft {
 					throw std::length_error("vector");
 				size_type dist = ft::distance(begin(), position);
 				size_type old_end = size();
-				reserve(size() + n);
-				for (size_t i = size(); i < size() + n; i++)
-				{
-					_a.construct(_start + i);
-				}
-				ft::copy(begin() + dist, begin() + old_end, begin() + dist + n);
+				resize(size() + n);
+				ft::backward_copy(begin() + dist, begin() + old_end, begin() + dist + n);
 				for (size_t i = 0; i < n; i++)
 				{
 					*(_start + dist + i) = *first;
 					first++;
 				}
-				_end += n;
 			}
 		iterator		erase (iterator position) {
 			return(erase(position, position + 1));
 		}
 		iterator		erase (iterator first, iterator last) {
 			iterator i = ft::copy(last, end(), first);
-			pointer p = _start + ft::distance(i, iterator(_start));
+			pointer p = _start + (i - begin());
 			for (; p != _end; p++) {
 				_a.destroy(p);
 			}

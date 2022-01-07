@@ -9,10 +9,27 @@ namespace ft
 {
 	template<typename InputIterator>
 		typename ft::iterator_traits<InputIterator>::difference_type
-			distance(InputIterator const &lhs, InputIterator const &rhs) { return rhs.base() - lhs.base(); }
+			distance(InputIterator first, InputIterator last) {
+				typename ft::iterator_traits<InputIterator>::difference_type	count = 0;
+				// if (last < first)
+				// {
+				// 	for (;last != first;) {
+				// 		count++;
+				// 		last++;
+				// 	}
+				// }
+				// else if (first < last)
+				// {
+					for (;first != last;) {
+						count++;
+						first++;
+					}
+				// }
+				return count;
+			}
 		
 	template<typename iterator, typename InputIterator>
-		iterator	copy(InputIterator first, InputIterator last, iterator position) {
+		iterator	backward_copy(InputIterator first, InputIterator last, iterator position) {
 			--first;
 			--last;
 			size_t n = ft::distance(first, last);
@@ -25,6 +42,18 @@ namespace ft
 			}
 			return(position + n);
 		}
+
+	template<typename iterator, typename InputIterator>
+		iterator	copy(InputIterator first, InputIterator last, iterator position) {
+			while (first != last)
+			{
+				*position = *first;
+				first++;
+				position++;
+			}
+			return(position);
+		}
+
 		
 	template<typename InputIterator>
 		bool	lexicographical_compare(InputIterator lhs_begin, InputIterator lhs_end, InputIterator rhs_begin, InputIterator rhs_end)

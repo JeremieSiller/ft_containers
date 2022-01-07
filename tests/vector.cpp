@@ -60,17 +60,17 @@ void	print_vector(vector<T> const &test)
 	cout << "-------------------------------" << endl;
 }
 
-class testClass {
-public:
-	std::string str;
-	int	val;
-private:
-	testClass &operator=(testClass const &in) { return *this; };
-public:
-	testClass() : val() { }
-	testClass(int v) : val(v) { }
-	~testClass() { }
-};
+// class testClass {
+// public:
+// 	std::string str;
+// 	int	val;
+// private:
+// 	testClass &operator=(testClass const &in) { return *this; };
+// public:
+// 	testClass() : val() { }
+// 	testClass(int v) : val(v) { }
+// 	~testClass() { }
+// };
 
 int	main(void)
 {
@@ -190,8 +190,8 @@ int	main(void)
 			rbegin++;
 		}
 	}
-	vector<int>::const_reverse_iterator	rbegin = d.rbegin();
-	vector<int>::const_reverse_iterator	rend = d.rend();
+	vector<int>::const_reverse_iterator	rbegin = d.begin();
+	vector<int>::const_reverse_iterator	rend = d.end();
 	while (rbegin != rend)
 	{
 		std::cout << *rbegin << std::endl;
