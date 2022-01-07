@@ -69,6 +69,7 @@
 		"clocale": "cpp",
 		"list": "cpp",
 		"numeric": "cpp",
-		"random": "cpp"
+		"random": "cpp",
+		"set": "cpp"
 	}
 }

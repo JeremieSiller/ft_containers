@@ -10,12 +10,13 @@ namespace ft
 template<typename vector, typename val>
 		class	random_access_iterator {
 		public:
-			typedef typename	vector::value_type			value_type;
-			typedef typename	vector::size_type			difference_type;
+			typedef typename	vector::value_type				value_type;
+			typedef typename	vector::size_type				difference_type;
 			typedef				val*							pointer;
 			typedef				val&							reference;
 			typedef				ft::random_access_iterator_tag	iterator_category;
 		public:
+			random_access_iterator(random_access_iterator const &in) : _ptr(in._ptr) { }
 			random_access_iterator(pointer ptr) : _ptr(ptr) { };
 			pointer		base() const { return _ptr; }
 			
