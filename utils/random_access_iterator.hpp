@@ -42,12 +42,11 @@ template<typename _value, typename vector>
 				return ret;
 			}
 			reference operator[] (size_t index) { return	*(_ptr + index); }
-			pointer	operator->() { return _ptr; }
+			pointer	operator->() { return &(this->operator*()); }
 			reference	operator*() { return *_ptr;}
 			reference	operator*() const { return *_ptr;}
 			random_access_iterator	operator=(random_access_iterator const &in) { _ptr = in._ptr; return *this; }
-			int						operator-(random_access_iterator const &rhs) const	{ return (this->base() - rhs.base()); }
-			int						operator+(random_access_iterator const &rhs) const	{ return (this->base() + rhs.base()); }
+				int						operator-(random_access_iterator const &rhs) const	{ return ((this->base()) - (rhs.base())); }
 			random_access_iterator	operator+(int	const &value) 								 const	{ return(this->base() + value); }
 			random_access_iterator	operator-(int	const &value) 								 const	{ return(this->base() - value); }
 			random_access_iterator	operator+=(int	const &value) {
@@ -62,9 +61,9 @@ template<typename _value, typename vector>
 			pointer	_ptr;
 		};
 		template<typename p, typename vector>
-			random_access_iterator<p, vector>	operator-(const int &lhs, random_access_iterator<p,vector> const &rhs) { return (lhs - rhs.base()); }
+			random_access_iterator<p, vector>	operator-(const int &lhs, random_access_iterator<p,vector> const &rhs) { return random_access_iterator<p,vector>(lhs - rhs.base()); }
 		template<typename p, typename vector>
-			random_access_iterator<p, vector>	operator+(const int &lhs, random_access_iterator<p,vector> const &rhs) { return (lhs + rhs.base()); }
+			random_access_iterator<p, vector>	operator+(const int &lhs, random_access_iterator<p,vector> const &rhs) { return random_access_iterator<p,vector>(lhs + rhs.base()); }
 		template<typename p, typename vector>
 			bool	operator!=(random_access_iterator<p, vector> const &lhs, random_access_iterator<p, vector> const &rhs) { return (rhs.base() != lhs.base()); }
 		template<typename p, typename vector>

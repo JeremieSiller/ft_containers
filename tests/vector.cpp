@@ -187,14 +187,15 @@ int	main(void)
 		{
 			std::cout << *rbegin << std::endl;
 			*rbegin = 2345;
-			rbegin++;
+			rbegin = rbegin + 1;
+			std::cout << rbegin - rend;
 		}
 	}
-	vector<int>::const_reverse_iterator	rbegin = d.rbegin();
-	vector<int>::const_reverse_iterator	rend = d.rend();
-	while (rbegin != rend)
-	{
-		std::cout << *rbegin << std::endl;
-		rbegin++;
-	}
+	// vector<int>::const_reverse_iterator	rbegin = d.rbegin();
+	// vector<int>::const_reverse_iterator	rend = d.rend();
+	// while (rbegin != rend)
+	// {
+	// 	std::cout << *rbegin << std::endl;
+	// 	rbegin++;
+	// }
 }
