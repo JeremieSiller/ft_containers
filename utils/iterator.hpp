@@ -18,10 +18,11 @@ namespace ft {
 			iterator _iterator;
 		public:
 			reverse_iterator() : _iterator() { }
-			reverse_iterator(iterator const &in) : _iterator(in) { }
-			reverse_iterator(reverse_iterator const &in) : _iterator(in._iterator) { }
+			explicit reverse_iterator(iterator const &in) : _iterator(in) { }
+			template<typename Iter>
+				reverse_iterator(reverse_iterator<Iter> const &in) : _iterator(in.base()) { }
 			~reverse_iterator() {}
-			pointer		base() const { return _iterator.base(); }
+			iterator		base() const { return _iterator; }
 			reverse_iterator	&operator++() {
 				--_iterator;
 				return *this;
@@ -42,11 +43,14 @@ namespace ft {
 			}
 			reference	operator[](size_t index) { return *(_iterator[-index]); }
 			pointer		operator->() { return (_iterator.base()); }
-			reference	operator*()  { return *_iterator; }
-			reverse_iterator	operator=(reverse_iterator const &in)  { _iterator = in._iterator; }
-			int					operator+(reverse_iterator const &rhs) { return _iterator + rhs._iterator; }
-			reverse_iterator	operator+(int const &value)				{ return _iterator - value; }
-			reverse_iterator	operator-(int const &value)				{ return _iterator + value; }
+			reference	operator*()  { return *(_iterator - 1); }
+			reverse_iterator	operator=(reverse_iterator const &in)  { _iterator = in._iterator; return *this; }
+			reverse_iterator	operator+=(int const &value) { _iterator -= value; return *this; }
+			reverse_iterator	operator-=(int const &value) { _iterator += value; return *this; }
+			int					operator+(reverse_iterator const &rhs) const { return _iterator - rhs._iterator; }
+			int					operator-(reverse_iterator const &rhs) const { return _iterator + rhs._iterator; }
+			reverse_iterator	operator+(int const &value)				const { return reverse_iterator(_iterator - (value)); }
+			reverse_iterator	operator-(int const &value)				const { return reverse_iterator(_iterator + (value)); }
 		};
 		template<typename iterator>
 			bool	operator!=(reverse_iterator<iterator> const &lhs, reverse_iterator<iterator> const &rhs) { return (rhs.base() != lhs.base()); }

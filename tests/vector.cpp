@@ -190,8 +190,8 @@ int	main(void)
 			rbegin++;
 		}
 	}
-	vector<int>::const_reverse_iterator	rbegin = d.begin();
-	vector<int>::const_reverse_iterator	rend = d.end();
+	vector<int>::const_reverse_iterator	rbegin = d.rbegin();
+	vector<int>::const_reverse_iterator	rend = d.rend();
 	while (rbegin != rend)
 	{
 		std::cout << *rbegin << std::endl;
