@@ -11,20 +11,10 @@ namespace ft
 		typename ft::iterator_traits<InputIterator>::difference_type
 			distance(InputIterator first, InputIterator last) {
 				typename ft::iterator_traits<InputIterator>::difference_type	count = 0;
-				// if (last < first)
-				// {
-				// 	for (;last != first;) {
-				// 		count++;
-				// 		last++;
-				// 	}
-				// }
-				// else if (first < last)
-				// {
 					for (;first != last;) {
 						count++;
 						first++;
 					}
-				// }
 				return count;
 			}
 		
