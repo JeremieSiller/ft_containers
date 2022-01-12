@@ -10,7 +10,7 @@ TARGET_MINE = mine
 
 TARGET = diff_file
 
-SRC = vector.cpp
+SRC = map.cpp
 HPP = ../containers/vector.hpp
 
 $(TARGET): $(SRC) $(HPP) $(TARGET_REAL) $(TARGET_MINE)

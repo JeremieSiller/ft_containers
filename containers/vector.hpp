@@ -73,7 +73,7 @@ namespace ft {
 			_capacity(), _start(), _end(), _a(alloc) {
 				reserve(ft::distance(first, last));
 				_end = _start + ft::distance(first, last);
-				std::copy(first, last, iterator(_start));
+				ft::copy(first, last, iterator(_start));
 		}
 
 		vector (const vector& x) :
