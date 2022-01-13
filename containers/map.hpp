@@ -107,6 +107,7 @@ namespace ft {
 			allocator_type			_a;
 			node_allocator			_na;
 			value_compare			_cmp;
+			key_compare				_keycmp;
 		private:
 			/*
 			** checks if first and second are equal
@@ -114,6 +115,10 @@ namespace ft {
 			*/
 			bool	_equals(value_type const &first, value_type const &second) const {
 				return (!_cmp(first, second) && !_cmp(second, first));
+			}
+
+			bool	_equals(key_type const &first, key_type const &second) const {
+				return (!_keycmp(first, second) && !_keycmp(second, first));
 			}
 
 			Node	*createNode(const_reference val)
@@ -129,11 +134,18 @@ namespace ft {
 				_na.construct(ret, true);
 				return ret;
 			}
+
+			void	deleteNode(Node *n)
+			{
+				_na.destroy(n);
+				_na.deallocate(n, 1);
+			}
+
 		public:
 			explicit map (const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type()) : _parent(nullptr), _last(nullptr), _first(nullptr), _a(alloc), _na(), _cmp(comp) { }
+				const allocator_type& alloc = allocator_type()) : _parent(nullptr), _last(nullptr), _first(nullptr), _a(alloc), _na(), _cmp(comp), _keycmp(comp) { }
 			
-			void	insert(const value_type &val) {
+			ft::pair<iterator, bool>	insert(const value_type &val) {
 				if (_parent == nullptr)
 				{
 					_parent = createNode(val);
@@ -143,7 +155,7 @@ namespace ft {
 					_parent->left = _first;
 					_first->parent = _parent;
 					_last->parent = _parent;
-					return ;
+					return ft::pair<iterator, bool>(iterator(_parent), true);
 				}
 				else {
 					Node	*head = _parent;
@@ -166,7 +178,7 @@ namespace ft {
 					if (_equals(head->value, val))
 					{
 						head->value.second = val.second;
-						return ;
+						return ft::pair<iterator, bool>(iterator(head), false);
 					}
 					Node	*n = createNode(val);
 					Node	*r = head->right;
@@ -186,8 +198,26 @@ namespace ft {
 						if (r)
 							r->parent = n;
 					}
+					return ft::pair<iterator, bool>(iterator(n), true);
 				}
 			}
+
+			iterator	insert (iterator position, const value_type &val) {
+				if (_cmp(*position, val) && !_cmp(*(++position), val) && !_equals(*(position), val)) {
+					return(insert(val).first);
+				}
+				return(insert(val).first);
+			}
+
+			template <class InputIterator>
+				void		insert (InputIterator first, InputIterator last,
+					typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = true) {
+						while (first != last) {
+							insert(*first);
+							first++;
+						}
+					}
+
 			iterator	begin() { return iterator(_first->parent); }
 			const_iterator	begin() const { return const_iterator(_first->parent); }
 			const_iterator	end()	const { return const_iterator(_last);}
@@ -198,7 +228,102 @@ namespace ft {
 			const_reverse_iterator rend() const { return const_reverse_iterator(_first->parent); }
 			bool		empty()	const { return(_parent == nullptr); }
 			size_type	size()	const { return(ft::distance(begin(), end()));}
-			size_type	max_size() const { return _na.max_size(); }			
+			size_type	max_size() const { return _na.max_size(); }
+
+			iterator find (const key_type& k) {
+				Node	*head = _parent;
+				while (
+					((head->left != nullptr && !_keycmp(head->value.first, k) && head->left->is_end == false)
+					||
+					(head->right != nullptr && _keycmp(head->value.first, k) && head->right->is_end == false))
+					&&
+					(!_equals(head->value.first, k))
+				) {
+					if (!_keycmp(head->value.first, k))
+					{
+						head = head->left;
+					}
+					else
+					{
+						head = head->right;
+					}
+				}
+				if (!_equals(head->value.first, k)) {
+					return end();
+				}
+				return iterator(head);
+			}
+
+			const_iterator find (const key_type& k) const {
+				Node	*head = _parent;
+				while (
+					((head->left != nullptr && !_keycmp(head->value.first, k) && head->left->is_end == false)
+					||
+					(head->right != nullptr && _keycmp(head->value.first, k) && head->right->is_end == false))
+					&&
+					(!_equals(head->value.first, k))
+				) {
+					if (!_keycmp(head->value.first, k))
+					{
+						head = head->left;
+					}
+					else
+					{
+						head = head->right;
+					}
+				}
+				if (!_equals(head->value.first, k)) {
+					return end();
+				}
+				return const_iterator(head);
+			}
+
+			mapped_type&	operator[](const key_type& k) {
+				if (find(k) == end()) {
+					return insert(value_type(k, mapped_type(7))).first->second;
+				}
+				else {
+					return (*find(k)).second;
+				}
+			}
+
+			void erase (iterator position) {
+				Node	*n = position.base();
+
+				if (n != _parent) {
+					if (n->parent && n->parent->left == n) {
+						n->parent->left = n->left;
+						if (n->parent->left)
+							n->parent->left->right = n->right;
+						std::cout << "JO" << std::endl;
+						std::cout << n->value.first << std::endl;
+					}
+					else {
+						n->parent->right = n->right;
+						n->parent->right->left = n->left;
+					}
+					std::cout << "lol" << std::endl;
+				}
+				else {
+					Node	*next = --n;
+					n++;
+					if (next->parent && next->parent->left == next) {
+						next->parent->left = next->left;
+					} 
+					else {
+						next->parent->right = next->right;
+					}
+					next->right = n->right;
+					next->left = n->left;
+					next->parent = nullptr;
+					_parent = next;
+				}
+				deleteNode(n);
+			}
+
+			size_type erase (const key_type& k);
+
+			void erase (iterator first, iterator last);
 	};
 }
 // {

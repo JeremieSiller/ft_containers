@@ -109,6 +109,7 @@ public:
 		return (ret);
 	}
 
+	pointer	operator->() { return &(this->operator*()); }
 	// }
 	bool operator==(binary_tree_iterator const &other) const {
 		return _current == other._current;
