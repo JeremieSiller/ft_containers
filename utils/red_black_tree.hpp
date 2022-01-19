@@ -29,7 +29,7 @@ template<
 		typedef ft::reverse_iterator<iterator>										reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
 		typedef	size_t																size_type;
-	private:
+	public:
 		Node				_parent;
 		Node				*_root;
 		allocator_type		_a;
@@ -37,42 +37,6 @@ template<
 		Compare				_cmp;
 		size_type			_size;
 	/* ---- testing ---- */
-	public:
-			void _shit(Node *root, int space)
-			{
-				if (root == nullptr)
-					return;
-				space += 10;
-				_shit(root->right, space);
-				std::cout<<std::endl;
-				for (int i = 10; i < space; i++)
-					std::cout << " ";
-				std::cout << (root)->val << "\n";
-				_shit(root->left, space);
-			}
-			void _shit2(Node *root, int space)
-			{
-				if (root == nullptr)
-					return;
-				space += 10;
-				_shit2(root->right, space);
-				std::cout<<std::endl;
-				for (int i = 10; i < space; i++)
-					std::cout << " ";
-				if (root->colour == black) {
-					std::cout << "B" << "\n";
-				} else {
-					std::cout << "R" << "\n";
-				}
-				_shit2(root->left, space);
-			}
-			// print tree as rb and keys
-			void print()
-			{
-				_shit(_root, 0);
-				std::cout << "--------------------------------------------------" << std::endl;
-				_shit2(_root, 0);
-			}
 	/* ---- comparison ---- */
 	private:
 		bool	_equals(value_type const &first, value_type const &second) const {
@@ -151,16 +115,9 @@ template<
 		** if you look at the orde.
 		*/
 		Node	*successor(Node *root) const {
-			if (!root)
-				return nullptr;
-			if (root->right != nullptr) {
-				return mostLeft(root->right);
-			}
-			Node	*tmp = root->parent;
-			while (tmp != nullptr && root != tmp->left) {
-				root = tmp;
-				tmp = tmp->parent;
-			}
+			Node	*tmp = root;
+			while (tmp->left)
+				tmp = tmp->left;
 			return tmp;
 		}
 		/*
@@ -276,59 +233,6 @@ template<
 			removeNode(root);
 		}
 
-	public:
-		explicit Tree(const value_compare& comp, const allocator_type &alloc) :
-		_parent(), _root(nullptr), _a(alloc), _na(alloc), _cmp(comp), _size() { 
-			_parent.left = &_parent;
-			_parent.right = nullptr;
-		}
-
-		Tree(const Tree &x) : _parent(), _root(), _a(x._a), _na(x._na), _cmp(x._cmp), _size() { //probably more efficient way by just creating new tree
-			const_iterator	b = x.begin();
-			const_iterator	e = x.end();
-			while (b != e) {
-				this->insert(*b);
-				b++;
-			}
-		}
-
-		ft::pair<iterator, bool>	insert(value_type const &val) {
-			Node	*tmp;
-			if (_root == nullptr) {
-				_root = createNode(val);
-				_root->colour = black;
-				_root->parent = &_parent;
-				_parent.left = _root;
-				fix_insert(_root);
-				_size++;
-				return (ft::make_pair(iterator(_root), true));
-			}
-			tmp = _search(_root, val);
-			if (_equals(val, tmp->val)) {
-				return (ft::make_pair(iterator(tmp), false));
-			}
-			else if (_cmp(val, tmp->val)) {
-				tmp->left = createNode(val);
-				tmp->left->parent = tmp;
-				fix_insert(tmp->left);
-			}
-			else {
-				tmp->right = createNode(val);
-				tmp->right->parent = tmp;
-				fix_insert(tmp->right);
-			}
-			_size++;
-			return (ft::make_pair(iterator(tmp), true));
-		}
-
-		void	erase(value_type const &val) {
-			Node	*tmp = _search(_root, val);
-			if (!tmp || !_equals(val, tmp->val))
-				return ;
-			erase(tmp);
-			_size--;
-		}
-
 		Node	*sibling(Node *n) const {
 			if (n == nullptr || n->parent == nullptr)
 				return nullptr;
@@ -353,11 +257,13 @@ template<
 		Node	*replacement(Node *v) const {
 			if (!v)
 				return nullptr;
-			if (v->left == nullptr)
-				return v->right;
+			if (v->left != nullptr && v->right != nullptr)
+				return successor(v->right);
+			if (v->left == nullptr && v->right == nullptr)
+				return nullptr;
 			if (v->right == nullptr)
 				return v->left;
-			return successor(v);
+			return v->right;
 		}
 
 		bool	colour(Node *n) const {
@@ -398,7 +304,7 @@ template<
 								left_rotation(parent);
 							}
 						} else {
-							if (sibling->left != nullptr && sibling->left->colour == red) {
+							if (sibling->parent && sibling->parent->left == sibling) {
 								sibling->right->colour = parent->colour;
 								left_rotation(sibling);
 								right_rotation(parent);
@@ -420,11 +326,84 @@ template<
 			}
 		}
 
+	public:
+		explicit Tree(const value_compare& comp, const allocator_type &alloc) :
+		_parent(), _root(nullptr), _a(alloc), _na(alloc), _cmp(comp), _size(0) { 
+			_parent.left = &_parent;
+			_parent.right = nullptr;
+		}
+
+		Tree(const Tree &x) : _parent(), _root(), _a(x._a), _na(x._na), _cmp(x._cmp), _size(0) { //probably more efficient way by just creating new tree
+			const_iterator	b = x.begin();
+			const_iterator	e = x.end();
+			while (b != e) {
+				this->insert(*b);
+				b++;
+			}
+		}
+
+		ft::pair<iterator, bool>	insert(value_type const &val) {
+			Node	*tmp;
+			Node	*r;
+			if (_root == nullptr) {
+				_root = createNode(val);
+				_root->colour = black;
+				_root->parent = &_parent;
+				_parent.left = _root;
+				fix_insert(_root);
+				_size++;
+				return (ft::make_pair(iterator(_root), true));
+			}
+			tmp = _search(_root, val);
+			if (_equals(val, tmp->val)) {
+				return (ft::make_pair(iterator(tmp), false));
+			}
+			else if (_cmp(val, tmp->val)) {
+				tmp->left = createNode(val);
+				r = tmp->left;
+				tmp->left->parent = tmp;
+				fix_insert(tmp->left);
+				_size++;
+				return (ft::make_pair(iterator(r), true));
+			}
+			else {
+				tmp->right = createNode(val);
+				r = tmp->right;
+				tmp->right->parent = tmp;
+				fix_insert(tmp->right);
+				_size++;
+				return (ft::make_pair(iterator(r), true));
+			}
+		}
+
+		iterator	insert(iterator position, const value_type &val) {
+			return insert(val).first;
+			(void)position;
+		}
+
+		template<class InputIterator>
+			void	insert(InputIterator first, InputIterator last) {
+				while (first != last)
+				{
+					insert(*first);
+					first++;
+				}
+			}
+
+		size_type	erase(value_type const &val) {
+			Node	*tmp = _search(_root, val);
+			if (!tmp || !_equals(val, tmp->val))
+				return 0;
+			erase(tmp);
+			return 1;
+		}
+
 		void	erase(Node *v) {
 			if (!v)
 				return ;
 			Node	*u = replacement(v);
 			bool	dBlack = ((colour(u) == black && colour(v) == black));
+			Node	*parent = v->parent;
 			if (u == nullptr) {
 				if (v == _root) {
 					_root = nullptr;
@@ -438,27 +417,30 @@ template<
 						}
 					}
 					if (v == v->parent->left) {
-						v->parent->left = nullptr;
+						parent->left = nullptr;
 					} else {
-						v->parent->right = nullptr;
+						parent->right = nullptr;
 					}
 				}
+				_size--;
 				removeNode(v);
 				return ;
 			}
 			if (v->left == nullptr || v->right == nullptr) {
 				if (v == _root) {
-					v->val = u->val;
-					v->left = nullptr;
-					v->right = nullptr;
-					removeNode(u);
+					_root = u;
+					_root->parent = &_parent;
+					u->left = nullptr;
+					u->right = nullptr;
+					u->colour = black;
+					removeNode(v);
 				} else {
 					if (v == v->parent->left) {
-						v->parent->left = u;
+						parent->left = u;
 					} else {
-						v->parent->right = u;
+						parent->right = u;
 					}
-					u->parent = v->parent;
+					u->parent = parent;
 					removeNode(v);
 					if (dBlack == true) {
 						fixDoubleBlack(u);
@@ -466,19 +448,49 @@ template<
 						u->colour = black;
 					}
 				}
+				_size--;
 				return ;
 			}
-			v->val = u->val;
-			erase(u);
+			if (v == _root) {
+				_root = u;
+			}
+			if (v->parent && v->parent->left == v) {
+				v->parent->left = u;
+			} else if (v->parent && v->parent->right == v) {
+				v->parent->right = u;
+			}
+			if (v->right) {
+				v->right->parent = u;
+			}
+			if (v->left) {
+				v->left->parent = u;
+			}
+			if (u->parent && u == u->parent->left) {
+				u->parent->left = v;
+			}
+			if (u->parent && u == u->parent->right) {
+				u->parent->right = v;
+			}
+			ft::swap(u->parent, v->parent);
+			ft::swap(u->left, v->left);
+			ft::swap(u->right, v->right);
+			ft::swap(u->colour, v->colour);
+			erase(v);
+		}
+
+		void	erase(iterator first, iterator last) {
+			while (first != last) {
+				erase(first++.base());
+			}
 		}
 
 		void	clear() {
 			_clear(_root);
 			_parent.left = &_parent;
 			_root = nullptr;
+			_size = 0;
 		}
 
-		~Tree() { clear(); }
 		
 		iterator				begin()				{ return iterator(mostLeft(_parent.left));}
 		const_iterator			begin()		const	{ return const_iterator(mostLeft(_parent.left));}
@@ -491,6 +503,65 @@ template<
 
 		bool		empty()	const { return (begin() == end()); }
 		size_type	size()	const { return _size; }
+		size_type	max_size() const { return _na.max_size(); }
+		
+		iterator		find (const value_type& k)		{
+			Node	*n = _search(_root, k);
+			if (!n || !_equals(n->val, k))
+				return end();
+			return iterator(n);
+		};
+
+		const_iterator	find (const value_type& k) const	{
+			Node	*n = _search(_root, k);
+			if (!n || !_equals(n->val, k))
+				return end();
+			return const_iterator(n);
+		};
+
+		void	swap(Tree &other) {
+			ft::swap(_parent.left, other._parent.left);
+			ft::swap(_root, other._root);
+			ft::swap(_a, other._a);
+			ft::swap(_na, other._na);
+			ft::swap(_cmp, other._cmp);
+			ft::swap(_size, other._size);
+			_root->parent = &_parent;
+			other._root->parent = &other._parent;
+		}
+
+		value_compare	value_comp() const { return _cmp; }
+
+		size_type	count(const value_type &k) const {
+			return (find(k) != end());
+		}
+		iterator lower_bound (const value_type &k) {
+			reverse_iterator rbg = rbegin();
+			reverse_iterator ren = rend();
+			while (rbg != ren && !_equals(*rbg, k) && !_cmp(k, *rbg)) {
+				rbg++;
+			}
+			if (rbg == rend())
+				return end();
+			return rbg.base();
+		}
+		const_iterator lower_bound (const value_type &k) const {
+			const_reverse_iterator rbg = rbegin();
+			const_reverse_iterator ren = rend();
+			while (rbg != ren && !_equals(*rbg, k) && !_cmp(k, *rbg)) {
+				rbg++;
+			}
+			if (rbg == rend())
+				return end();
+			return rbg.base();
+		}
+		iterator upper_bound (const value_type &k) {
+		}
+		const_iterator upper_bound (const value_type &k) const {
+
+		}
+
+		~Tree() { clear(); }
 	};
 
 #endif
