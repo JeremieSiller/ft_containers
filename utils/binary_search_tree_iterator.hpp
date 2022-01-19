@@ -19,8 +19,7 @@ private:
 public:
 	binary_tree_iterator() : _current() { }
 	binary_tree_iterator(Node const &in) : _current(in) { }
-	// binary_tree_iterator(binary_tree_iterator<typename container::Node *, container, typename container::value_type> const &in) : _current(in.base()) { }
-	// binary_tree_iterator(const binary_tree_iterator<const T, const V> &in) : _current(in._current) { }
+	binary_tree_iterator(const binary_tree_iterator<typename container::Node *, container, typename container::value_type> & in) : _current(in.base()) { }
 	const Node	&base() const { return _current; }
 	Node	&base() { return _current; }
 	binary_tree_iterator &operator++() {

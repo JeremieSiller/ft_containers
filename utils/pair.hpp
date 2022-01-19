@@ -14,11 +14,6 @@ namespace ft
 			template<class U, class V>
 				pair(const pair<U,V>& pr) : first(pr.first), second(pr.second) { }
 			pair(const first_type &f, const second_type &s) : first(f), second(s) { }
-			pair	&operator=(const pair &pr) {
-				first = pr.first;
-				second = pr.second;
-				return *this;
-			}
 		};
 	template <class T1, class T2>
 		bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) {

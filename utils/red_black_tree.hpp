@@ -25,9 +25,10 @@ template<
 		typedef typename Allocator::template rebind<tree_node<value_type> >::other	node_allocator_type;
 		typedef	tree_node<value_type>												Node;
 		typedef	binary_tree_iterator<Node *, Tree, T>								iterator;
-		typedef reverse_iterator<iterator>											reverse_iterator;
+		typedef	binary_tree_iterator<const Node *, Tree, const T>					const_iterator;
+		typedef ft::reverse_iterator<iterator>										reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
 	private:
-	public:
 		Node				_parent;
 		Node				*_root;
 		allocator_type		_a;
@@ -75,7 +76,7 @@ template<
 		bool	_equals(value_type const &first, value_type const &second) const {
 			return (!_cmp(first, second) && !_cmp(second, first));
 		}
-	/* ---- allocation and deallocation ---- */
+	/* ---- helper unctions ---- */
 	private:
 		/*
 		** allocates node and constructs
@@ -160,8 +161,6 @@ template<
 			}
 			return tmp;
 		}
-	/* ----- ROTATIONS - self balancing ----- */
-	public:
 		/*
 		** right-rotation
 		** rotates a node to the right, if the node is the root 
@@ -276,14 +275,22 @@ template<
 		}
 
 	public:
-		explicit Tree(allocator_type const &alloc = allocator_type()) :
-		_parent(), _root(nullptr), _a(alloc), _na(alloc), _cmp() { 
+		explicit Tree(const value_compare& comp, const allocator_type &alloc) :
+		_parent(), _root(nullptr), _a(alloc), _na(alloc), _cmp(comp) { 
 			_parent.left = &_parent;
 			_parent.right = nullptr;
 		}
 
+		Tree(const Tree &x) : _parent(), _root(), _a(x._a), _na(x._na), _cmp(x._cmp) { //probably more efficient way by just creating new tree
+			const_iterator	b = x.begin();
+			const_iterator	e = x.end();
+			while (b != e) {
+				this->insert(*b);
+				b++;
+			}
+		}
 
-		void	insert(value_type const &val) {
+		ft::pair<iterator, bool>	insert(value_type const &val) {
 			Node	*tmp;
 			if (_root == nullptr) {
 				_root = createNode(val);
@@ -291,11 +298,11 @@ template<
 				_root->parent = &_parent;
 				_parent.left = _root;
 				fix_insert(_root);
-				return ;
+				return (ft::make_pair(iterator(_root), true));
 			}
 			tmp = _search(_root, val);
 			if (_equals(val, tmp->val)) {
-				tmp->val = val;
+				return (ft::make_pair(iterator(tmp), false));
 			}
 			else if (_cmp(val, tmp->val)) {
 				tmp->left = createNode(val);
@@ -307,6 +314,7 @@ template<
 				tmp->right->parent = tmp;
 				fix_insert(tmp->right);
 			}
+			return (ft::make_pair(iterator(tmp), true));
 		}
 
 		void	erase(value_type const &val) {
@@ -468,9 +476,13 @@ template<
 		~Tree() { clear(); }
 		
 		iterator			begin()		{ return iterator(mostLeft(_parent.left));}
+		const_iterator			begin()		const { return const_iterator(mostLeft(_parent.left));}
 		iterator			end()		{ return iterator(&_parent);		}
+		const_iterator			end()		const { return const_iterator(&_parent);		}
 		reverse_iterator	rbegin()	{ return reverse_iterator(end());	}
+		const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
 		reverse_iterator	rend()		{ return reverse_iterator(begin());	}
+		const_reverse_iterator	rend()	const { return reverse_iterator(begin());	}
 	};
 
 #endif
