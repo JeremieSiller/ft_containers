@@ -84,8 +84,8 @@ namespace ft {
 			const_reverse_iterator	rend()		const	{ return _internal_tree.rend(); }
 
 			/** --------- Capacity --------- **/
-			// bool	empty() const { return _internal_tree.empty(); }
-			// size_type size() const { return _internal_tree.size(); }
+			bool	empty()		const	{ return _internal_tree.empty(); }
+			size_type size()	const	{ return _internal_tree.size(); }
 			// size_type max_size() const { return internal_tree.max_size(); }
 
 			/** --------- Element access --------- **/

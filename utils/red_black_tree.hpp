@@ -28,12 +28,14 @@ template<
 		typedef	binary_tree_iterator<const Node *, Tree, const T>					const_iterator;
 		typedef ft::reverse_iterator<iterator>										reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
+		typedef	size_t																size_type;
 	private:
 		Node				_parent;
 		Node				*_root;
 		allocator_type		_a;
 		node_allocator_type	_na;
 		Compare				_cmp;
+		size_type			_size;
 	/* ---- testing ---- */
 	public:
 			void _shit(Node *root, int space)
@@ -76,7 +78,7 @@ template<
 		bool	_equals(value_type const &first, value_type const &second) const {
 			return (!_cmp(first, second) && !_cmp(second, first));
 		}
-	/* ---- helper unctions ---- */
+	/* ---- helper functions ---- */
 	private:
 		/*
 		** allocates node and constructs
@@ -276,12 +278,12 @@ template<
 
 	public:
 		explicit Tree(const value_compare& comp, const allocator_type &alloc) :
-		_parent(), _root(nullptr), _a(alloc), _na(alloc), _cmp(comp) { 
+		_parent(), _root(nullptr), _a(alloc), _na(alloc), _cmp(comp), _size() { 
 			_parent.left = &_parent;
 			_parent.right = nullptr;
 		}
 
-		Tree(const Tree &x) : _parent(), _root(), _a(x._a), _na(x._na), _cmp(x._cmp) { //probably more efficient way by just creating new tree
+		Tree(const Tree &x) : _parent(), _root(), _a(x._a), _na(x._na), _cmp(x._cmp), _size() { //probably more efficient way by just creating new tree
 			const_iterator	b = x.begin();
 			const_iterator	e = x.end();
 			while (b != e) {
@@ -298,6 +300,7 @@ template<
 				_root->parent = &_parent;
 				_parent.left = _root;
 				fix_insert(_root);
+				_size++;
 				return (ft::make_pair(iterator(_root), true));
 			}
 			tmp = _search(_root, val);
@@ -314,6 +317,7 @@ template<
 				tmp->right->parent = tmp;
 				fix_insert(tmp->right);
 			}
+			_size++;
 			return (ft::make_pair(iterator(tmp), true));
 		}
 
@@ -322,6 +326,7 @@ template<
 			if (!tmp || !_equals(val, tmp->val))
 				return ;
 			erase(tmp);
+			_size--;
 		}
 
 		Node	*sibling(Node *n) const {
@@ -475,14 +480,17 @@ template<
 
 		~Tree() { clear(); }
 		
-		iterator			begin()		{ return iterator(mostLeft(_parent.left));}
-		const_iterator			begin()		const { return const_iterator(mostLeft(_parent.left));}
-		iterator			end()		{ return iterator(&_parent);		}
-		const_iterator			end()		const { return const_iterator(&_parent);		}
-		reverse_iterator	rbegin()	{ return reverse_iterator(end());	}
-		const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
-		reverse_iterator	rend()		{ return reverse_iterator(begin());	}
-		const_reverse_iterator	rend()	const { return reverse_iterator(begin());	}
+		iterator				begin()				{ return iterator(mostLeft(_parent.left));}
+		const_iterator			begin()		const	{ return const_iterator(mostLeft(_parent.left));}
+		iterator				end()				{ return iterator(&_parent);		}
+		const_iterator			end()		const	{ return const_iterator(&_parent);		}
+		reverse_iterator		rbegin()			{ return reverse_iterator(end());	}
+		const_reverse_iterator	rbegin() 	const	{ return const_reverse_iterator(end()); }
+		reverse_iterator		rend()				{ return reverse_iterator(begin());	}
+		const_reverse_iterator	rend()		const	{ return reverse_iterator(begin());	}
+
+		bool		empty()	const { return (begin() == end()); }
+		size_type	size()	const { return _size; }
 	};
 
 #endif

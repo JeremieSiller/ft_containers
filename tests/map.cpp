@@ -22,8 +22,11 @@ using std::string;
 
 int	main(void) {
 	ft::map<int, int> test;
+	cout << test.empty() << endl;
 	test.insert(ft::pair<const int, int>(10,1));
 	test.insert(ft::pair<const int, int>(10,5));
+	cout << test.size() << endl;
+	cout << test.empty() << endl;
 	// test.insert(ft::pair<int, int>(20,1));
 	// test.insert(ft::pair<int, int>(15,1));
 	// test.insert(ft::pair<int, int>(25,1));
@@ -35,12 +38,14 @@ int	main(void) {
 	b = test.begin();
 	e = test.end();
 	while (b != e) {
+		cout << test.size() << endl;
 		cout << b->first << ", " << b->second << endl;
 		b++;
 	}
 	for (size_t i = 0; i < 500; i++)
 	{
 		test.insert(ft::pair<int, int>(std::rand(), i));
+		cout << test.size() << endl;
 	}
 
 	ft::map<int, int> test2(test.begin(), test.end());
@@ -51,6 +56,7 @@ int	main(void) {
 	b = test3.begin();
 	e = test3.end();
 	while (b != e) {
+		cout << test3.size() << endl;
 		cout << b->first << ", " << b->second << endl;
 		b++;
 	}
