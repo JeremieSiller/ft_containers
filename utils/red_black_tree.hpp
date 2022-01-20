@@ -499,7 +499,7 @@ template<
 		reverse_iterator		rbegin()			{ return reverse_iterator(end());	}
 		const_reverse_iterator	rbegin() 	const	{ return const_reverse_iterator(end()); }
 		reverse_iterator		rend()				{ return reverse_iterator(begin());	}
-		const_reverse_iterator	rend()		const	{ return reverse_iterator(begin());	}
+		const_reverse_iterator	rend()		const	{ return const_reverse_iterator(begin());	}
 
 		bool		empty()	const { return (begin() == end()); }
 		size_type	size()	const { return _size; }
@@ -535,33 +535,56 @@ template<
 		size_type	count(const value_type &k) const {
 			return (find(k) != end());
 		}
-		iterator lower_bound (const value_type &k) {
+		iterator upper_bound (const value_type &k) {
 			reverse_iterator rbg = rbegin();
 			reverse_iterator ren = rend();
-			while (rbg != ren && !_equals(*rbg, k) && !_cmp(k, *rbg)) {
+			while (rbg != ren && !_equals(*rbg, k) && _cmp(k, *rbg)) {
 				rbg++;
 			}
-			if (rbg == rend())
-				return end();
 			return rbg.base();
-		}
-		const_iterator lower_bound (const value_type &k) const {
-			const_reverse_iterator rbg = rbegin();
-			const_reverse_iterator ren = rend();
-			while (rbg != ren && !_equals(*rbg, k) && !_cmp(k, *rbg)) {
-				rbg++;
-			}
-			if (rbg == rend())
-				return end();
-			return rbg.base();
-		}
-		iterator upper_bound (const value_type &k) {
 		}
 		const_iterator upper_bound (const value_type &k) const {
-
+			const_reverse_iterator rbg = rbegin();
+			const_reverse_iterator ren = rend();
+			while (rbg != ren && !_equals(*rbg, k) && _cmp(k, *rbg)) {
+				rbg++;
+			}
+			return rbg.base();
+		}
+		iterator lower_bound (const value_type &k) {
+			iterator	bg = begin();
+			iterator	en = end();
+			while (bg != en && !_equals(*bg, k) && !_cmp(k, *bg)) {
+				bg++;
+			}
+			return bg;
+		}
+		const_iterator lower_bound (const value_type &k) const {
+			const_iterator	bg = begin();
+			const_iterator	en = end();
+			while (bg != en && !_equals(*bg, k) && !_cmp(k, *bg)) {
+				bg++;
+			}
+			return bg;
+		}
+		ft::pair<const_iterator,const_iterator>	equal_range (const value_type& k) const {
+			return ft::make_pair(lower_bound(k), upper_bound(k));
+		}
+		ft::pair<iterator,iterator>				equal_range (const value_type& k) {
+			return ft::make_pair(lower_bound(k), upper_bound(k));
 		}
 
+		allocator_type get_allocator() const { return _a; }
 		~Tree() { clear(); }
+
+		Tree	&operator=(const Tree &other) {
+			this->clear();
+			_cmp = other._cmp;
+			_a = other._a;
+			_na = other._na;
+			this->insert(other.begin(), other.end());
+			return *this;
+		}
 	};
 
 #endif

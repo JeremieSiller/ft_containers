@@ -22,17 +22,57 @@ using std::string;
 
 int	main(void) {
 	ft::map<int, int> test;
-	cout << test.empty() << endl;
+	for (size_t i = 0; i < 5000; i++)
+	{
+		test[rand() % 50000] = i;
+	}
+	for (size_t i = 0; i < 20; i++)
+	{
+		ft::pair<ft::map<int,int>::iterator, ft::map<int, int>::iterator> eq = test.equal_range(rand() % 1234);
+		while (eq.first != eq.second)
+		{
+			std::cout << eq.first->first << endl;
+			eq.first++;
+		}
+		// std::cout << eq.first->first << endl;
+	}
+	
+
+	std::cout << "begin: " << test.begin()->first << endl;
+	for (size_t i = 0; i < 40; i++)
+	{
+		if (test.upper_bound(i) != test.end()) {
+			if (test.upper_bound(i)->first == 10)
+				std::cerr << "upper_bound i: " << i << endl;
+			cout << test.upper_bound(i)->first << endl;
+		}
+		if (test.lower_bound(i) != test.end())
+			if (test.lower_bound(i)->first == 10)
+				std::cerr << "lower_bound i: " << i << endl;
+			cout << test.lower_bound(i)->first << endl;
+	}
+	
+	ft::map<int, int>::reverse_iterator rbg = test.rbegin();
+	ft::map<int, int>::reverse_iterator rbe = test.rend();
+	while (rbg != rbe)
+	{
+		cout << rbg->first << " ";
+		rbg++;
+	}
+	cout << endl;
+	cout << test.upper_bound(17)->first << endl;
+	
+	// cout << test.empty() << endl;
 	test.insert(ft::pair<const int, int>(10,1));
 	test.insert(ft::pair<const int, int>(11,5));
 	cout << test.size() << endl;
-	cout << test.empty() << endl;
-	// test.insert(ft::pair<int, int>(20,1));
-	// test.insert(ft::pair<int, int>(15,1));
-	// test.insert(ft::pair<int, int>(25,1));
-	// test.insert(ft::pair<int, int>(0,1));
-	// test.insert(ft::pair<int, int>(5,1));
-	// test.insert(ft::pair<int, int>(-5,1));
+	// cout << test.empty() << endl;
+	test.insert(ft::pair<int, int>(20,1));
+	test.insert(ft::pair<int, int>(15,1));
+	test.insert(ft::pair<int, int>(25,1));
+	test.insert(ft::pair<int, int>(0,1));
+	test.insert(ft::pair<int, int>(5,1));
+	test.insert(ft::pair<int, int>(-5,1));
 	ft::map<int, int>::iterator b = test.begin();
 	ft::map<int, int>::iterator e = test.end();
 	b = test.begin();
@@ -46,7 +86,7 @@ int	main(void) {
 	for (size_t i = 0; i < 1000000; i++)
 	{
 		test.insert(ft::pair<int, int>(std::rand() % 100000, i));
-		// cout << test.size() << endl;
+		cout << test.size() << endl;
 	}
 	for (size_t i = 0; i < 1000000; i++)
 	{
@@ -97,6 +137,16 @@ int	main(void) {
 		b = test.lower_bound(rand());
 		if (b != test.end())
 			cout << b->first << endl;
+		b = test.upper_bound(rand());
+		if (b != test.end())
+			cout << b->first << endl;
+		ft::pair<ft::map<int,int>::iterator, ft::map<int, int>::iterator> eq = test.equal_range(i);
+		while (eq.first != eq.second)
+		{
+				std::cout << eq.first->first << endl;
+			eq.first++;
+		}
+		// std::cout << eq.first->first << endl;
 	}
 	ft::map<int, int> test2(test.begin(), test.end());
 	// std::cerr << "not till here" <<endl;
@@ -114,162 +164,163 @@ int	main(void) {
 		cout << b->first << ", " << b->second << endl;
 		b++;
 	}
+	// --------------------
 	ft::map<int, int>::key_compare k = test.key_comp();
 	ft::map<int, int>::value_compare v = test.value_comp();
-	// ft::map<int, int>::const_rever se_iterator	rb = test3.rbegin();
-	// ft::map<int, int>::const_reverse_iterator	re = test3.rend();
-	// while (rb != re)
-	// {
-	// 	cout << rb->first << ", " << rb->second << endl;
-	// 	rb++;
-	// }
-	// cout << "max_size: " << test.max_size();
-	// {
-	// 	ft::map<int, std::string> max_testing;
-	// 	cout << max_testing.max_size();
-	// }
-	// {
-	// 	ft::map<std::string, std::string> max_testing;
-	// 	cout << max_testing.max_size();
-	// }
-	// {
-	// 	ft::map<long, std::string> max_testing;
-	// 	cout << max_testing.max_size();
-	// }
-	// {
-	// 	ft::map<char, std::string> max_testing;
-	// 	cout << max_testing.max_size();
-	// }
-	// cout << endl;
-	// ft::map<int, int>::mapped_type &x = test[-1];
-	// x = -78;
-	// std::cout << test[-1] << std::endl;
-	// std::cout << x << std::endl;
-	// cout << endl;
-	// test.erase(10);
-	// b = test.begin();
-	// e = test.end();
-	// while (b != e) {
-	// 	cout << b->first << " ";
-	// 	b++;
-	// }
-	// cout << endl;
+	ft::map<int, int>::const_reverse_iterator	rb = test3.rbegin();
+	ft::map<int, int>::const_reverse_iterator	re = test3.rend();
+	while (rb != re)
+	{
+		cout << rb->first << ", " << rb->second << endl;
+		rb++;
+	}
+	cout << "max_size: " << test.max_size();
+	{
+		ft::map<int, std::string> max_testing;
+		cout << max_testing.max_size();
+	}
+	{
+		ft::map<std::string, std::string> max_testing;
+		cout << max_testing.max_size();
+	}
+	{
+		ft::map<long, std::string> max_testing;
+		cout << max_testing.max_size();
+	}
+	{
+		ft::map<char, std::string> max_testing;
+		cout << max_testing.max_size();
+	}
+	cout << endl;
+	ft::map<int, int>::mapped_type &x = test[-1];
+	x = -78;
+	std::cout << test[-1] << std::endl;
+	std::cout << x << std::endl;
+	cout << endl;
+	test.erase(10);
+	b = test.begin();
+	e = test.end();
+	while (b != e) {
+		cout << b->first << " ";
+		b++;
+	}
+	cout << endl;
 	// std::cout << test.empty() << std::endl;
-	// // test.insert(ft::pair< int, int>(2, 2));
-	// test.insert(ft::pair<int, int>(2, 2));
+	// test.insert(ft::pair< int, int>(2, 2));
+	test.insert(ft::pair<int, int>(2, 2));
+	std::cout << test.size() << std::endl;
+	test.insert(ft::pair< int, int>(5, 5));
+	std::cout << test.size() << std::endl;
+	test.insert(ft::pair< int, int>(-12, 3));
+	std::cout << test.size() << std::endl;
+	test.insert(ft::pair< int, int>(3, 3));
+	test.insert(ft::pair< int, int>(9, 3));
+	test.insert(ft::pair< int, int>(4, 3));
+	b = test.begin();
+	e = test.end();
+	while (b != e) {
+		cout << b->first << " ";
+		b++;
+	}
+	std::cout << test.empty() << std::endl;
+	// for (size_t i = 0; i < 20; i++)
+	// {
+	// 	test.insert(ft::pair<int, int>(std::rand(), 1));
+	// }
 	// std::cout << test.size() << std::endl;
-	// test.insert(ft::pair< int, int>(5, 5));
-	// std::cout << test.size() << std::endl;
-	// test.insert(ft::pair< int, int>(-12, 3));
-	// std::cout << test.size() << std::endl;
-	// test.insert(ft::pair< int, int>(3, 3));
-	// test.insert(ft::pair< int, int>(9, 3));
-	// test.insert(ft::pair< int, int>(4, 3));
-	// b = test.begin();
-	// e = test.end();
-	// while (b != e) {
-	// 	cout << b->first << " ";
+	
+	// // // test.insert(ft::pair< int, int>(235, 1));
+	// // // test.call_print();
+	// ft::map<int, int>::iterator b	= test.begin();
+	// ft::map<int, int>::iterator e	= test.end();
+	// while (b != e)
+	// {
+	// 	std::cout << (*b).first << std::endl;
 	// 	b++;
 	// }
-	// // std::cout << test.empty() << std::endl;
-	// // for (size_t i = 0; i < 20; i++)
-	// // {
-	// // 	test.insert(ft::pair<int, int>(std::rand(), 1));
-	// // }
-	// // std::cout << test.size() << std::endl;
-	
-	// // // // test.insert(ft::pair< int, int>(235, 1));
-	// // // // test.call_print();
-	// // ft::map<int, int>::iterator b	= test.begin();
-	// // ft::map<int, int>::iterator e	= test.end();
-	// // while (b != e)
-	// // {
-	// // 	std::cout << (*b).first << std::endl;
-	// // 	b++;
-	// // }
-	// // b--;
-	// // std::cout << (*b).first << std::endl;
-	// map<int, int>::const_reverse_iterator rb = test.rbegin();
-	// map<int, int>::const_reverse_iterator re = test.rend();
-	// // while (rb != re) {
-	// // 	std::cout << (*rb).first << std::endl;
-	// // 	rb++;
-	// // }
-	// // std::cout << test.max_size() << std::endl;
-	// // std::cout << (*test.find(2)).second << std::endl;
-	// // std::cout << test[-12] << std::endl;
-	// // test[69] = 69;
-	// // test[69] = 64;
+	// b--;
+	// std::cout << (*b).first << std::endl;
+	// while (rb != re) {
+	// 	std::cout << (*rb).first << std::endl;
+	// 	rb++;
+	// }
+	// std::cout << test.max_size() << std::endl;
+	// std::cout << (*test.find(2)).second << std::endl;
+	// std::cout << test[-12] << std::endl;
+	// test[69] = 69;
+	// test[69] = 64;
+	// std::cout << test[69] << std::endl;
+	// rb = test.rbegin();
+	// re = test.rend();
+	// while (rb != re) {
+	// 	std::cout << (*rb).first << std::endl;
+	// 	rb++;
+	// }
+	// test.insert(test.begin(), ft::pair<int, int>(4234, 4));
+	// rb = test.rbegin();
+	// re = test.rend();
+	// while (rb != re) {
+	// 	std::cout << (*rb).first << std::endl;
+	// 	rb++;
+	// }
+	// std::cout << (test.find(4234))->second << std::endl;
 	// // std::cout << test[69] << std::endl;
-	// // rb = test.rbegin();
-	// // re = test.rend();
-	// // while (rb != re) {
-	// // 	std::cout << (*rb).first << std::endl;
-	// // 	rb++;
-	// // }
-	// // test.insert(test.begin(), ft::pair<int, int>(4234, 4));
-	// // rb = test.rbegin();
-	// // re = test.rend();
-	// // while (rb != re) {
-	// // 	std::cout << (*rb).first << std::endl;
-	// // 	rb++;
-	// // }
-	// // std::cout << (test.find(4234))->second << std::endl;
-	// // // std::cout << test[69] << std::endl;
-	// // // std::cout << (*test.find(69)).second << std::endl;
-	// // // system("leaks a.out");
-	// // vector<ft::pair<int, int> > inserter;
-	// // for (size_t i = 0; i < 20; i++)
-	// // {
-	// // 	inserter.push_back(ft::pair<int,int>(std::rand(), 1));
-	// // }
-	// // test.insert(inserter.begin(), inserter.end());
-	// // rb = test.rbegin();
-	// // re = test.rend();
-	// // while (rb != re) {
-	// // 	std::cout << (*rb).first << std::endl;
-	// // 	rb++;
-	// // }
-	// // std::cout << "here" << std::endl;
-	// // // test.erase(test.find(13));
-	// std::cout << "------" << std::endl;
-	// while (rb != re) {
-	// 	std::cout << (*rb).first << " ";
-	// 	rb++;
+	// // std::cout << (*test.find(69)).second << std::endl;
+	// // system("leaks a.out");
+	// vector<ft::pair<int, int> > inserter;
+	// for (size_t i = 0; i < 20; i++)
+	// {
+	// 	inserter.push_back(ft::pair<int,int>(std::rand(), 1));
 	// }
-	// cout << endl;
-	// test.erase(test.find(5));
+	// test.insert(inserter.begin(), inserter.end());
 	// rb = test.rbegin();
 	// re = test.rend();
 	// while (rb != re) {
-	// 	std::cout << (*rb).first << " ";
+	// 	std::cout << (*rb).first << std::endl;
 	// 	rb++;
 	// }
-	// cout << endl;
-	// test.erase(test.find(3));
-	// rb = test.rbegin();
-	// re = test.rend();
-	// while (rb != re) {
-	// 	std::cout << (*rb).first << " ";
-	// 	rb++;
-	// }
-	// cout << endl;
-	// test.erase(test.find(-12));
-	// rb = test.rbegin();
-	// re = test.rend();
-	// while (rb != re) {
-	// 	std::cout << (*rb).first << " ";
-	// 	rb++;
-	// }
-	// cout << endl;
-	// std::cout << test.erase(4) << std::endl;
-	// rb = test.rbegin();
-	// re = test.rend();
-	// while (rb != re) {
-	// 	std::cout << (*rb).first << " ";
-	// 	rb++;
-	// }
+	// std::cout << "here" << std::endl;
+	// // test.erase(test.find(13));
+	std::cout << "------" << std::endl;
+	while (rb != re) {
+		std::cout << (*rb).first << " ";
+		rb++;
+	}
+	cout << endl;
+	test.erase(test.find(5));
+	rb = test.rbegin();
+	re = test.rend();
+	while (rb != re) {
+		std::cout << (*rb).first << " ";
+		rb++;
+	}
+	cout << endl;
+	test.erase(test.find(3));
+	rb = test.rbegin();
+	re = test.rend();
+	while (rb != re) {
+		std::cout << (*rb).first << " ";
+		rb++;
+	}
+	cout << endl;
+	test.erase(test.find(-12));
+	rb = test.rbegin();
+	re = test.rend();
+	while (rb != re) {
+		std::cout << (*rb).first << " ";
+		rb++;
+	}
+	cout << endl;
+	std::cout << test.erase(4) << std::endl;
+	rb = test.rbegin();
+	re = test.rend();
+	while (rb != re) {
+		std::cout << (*rb).first << " ";
+		rb++;
+	}
+	std::cout << "==" << (test == test3) << std::endl;
 	// 	cout << test.size() << endl;
+
 	// cout << endl;
 	// test.erase(test.find(2));
 	// rb = test.rbegin();
@@ -280,24 +331,24 @@ int	main(void) {
 	// 	rb++;
 	// }
 	// cout << endl;
-	// // test.erase(test.find(1));
-	// // rb = test.rbegin();
-	// // re = test.rend();
-	// // while (rb != re) {
-	// // 	std::cout << (*rb).first << " ";
-	// // 	rb++;
-	// // }
-	// // test.erase(test.find(-3));
-	// // rb = test.rbegin();
-	// // re = test.rend();
-	// // while (rb != re) {
-	// // 	std::cout << (*rb).first << " ";
-	// // 	rb++;
-	// // }
-	// // cout << endl;
+	// test.erase(test.find(1));
+	// rb = test.rbegin();
+	// re = test.rend();
+	// while (rb != re) {
+	// 	std::cout << (*rb).first << " ";
+	// 	rb++;
+	// }
+	// test.erase(test.find(-3));
+	// rb = test.rbegin();
+	// re = test.rend();
+	// while (rb != re) {
+	// 	std::cout << (*rb).first << " ";
+	// 	rb++;
+	// }
+	// cout << endl;
 	// std::cout << "------" << std::endl;
 	// std::cout << test.empty() << std::endl;
-	// // test.insert(ft::pair< int, int>(2, 2));
+	// test.insert(ft::pair< int, int>(2, 2));
 	// test.insert(ft::pair<int, int>(2, 2));
 	// std::cout << test.size() << std::endl;
 	// test.insert(ft::pair< int, int>(5, 5));
@@ -368,6 +419,6 @@ int	main(void) {
 	// 	rb++;
 	// }
 	
-	// return (0);
+	return (0);
 }
 

@@ -109,7 +109,17 @@ public:
 		return (ret);
 	}
 
+	binary_tree_iterator	operator+(int const &i) const {
+		binary_tree_iterator ret = *this;
+		for (int j = 0; j < i; j++)
+		{
+			ret++;
+		}
+		return (ret);
+	}
+
 	pointer	operator->() { return &(this->operator*()); }
+	pointer	operator->() const { return &(this->operator*()); }
 	// }
 	bool operator==(binary_tree_iterator const &other) const {
 		return _current == other._current;
@@ -120,6 +130,15 @@ public:
 	value_type	&operator*() {
 		return _current->val;
 	}
+
+	value_type	&operator*() const {
+		return _current->val;
+	}
+
 };
+	// template<typename T, typename container, typename value>
+	// 	bool	operator==(binary_tree_iterator<T, container, value> const &lhs, binary_tree_iterator<const typename container::Node *, container, const typename container::value_type> const &rhs) {
+	// 		return (lhs.base() == rhs.base());
+	// 	}
 
 #endif

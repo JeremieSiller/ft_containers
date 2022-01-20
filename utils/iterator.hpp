@@ -43,7 +43,9 @@ namespace ft {
 			}
 			reference	operator[](size_t index) { return (_iterator[-index - 1]); }
 			pointer		operator->() { return &(this->operator*()); }
+			pointer		operator->() const { return &(this->operator*()); }
 			reference	operator*()  { return *(_iterator - 1); }
+			reference	operator*()  const { return *(_iterator - 1); }
 			reverse_iterator	operator=(reverse_iterator const &in)  { _iterator = in._iterator; return *this; }
 			reverse_iterator	operator+=(int const &value) { _iterator -= value; return *this; }
 			reverse_iterator	operator-=(int const &value) { _iterator += value; return *this; }
