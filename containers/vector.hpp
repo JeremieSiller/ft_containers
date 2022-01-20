@@ -2,15 +2,8 @@
 # define VECTOR_HPP
 
 #include <memory>
-#include <stack>
-#include <iterator>
-#include <iostream>
-#include <string.h>
-#include <vector>
 #include <stdexcept>
 #include <utility>
-#include <algorithm>
-#include <type_traits>
 #include "../utils/iterator.hpp"
 #include "../utils/utils.hpp"
 #include "../utils/sfinae.hpp"
