@@ -13,6 +13,7 @@
 #include <type_traits>
 #include "../utils/iterator.hpp"
 #include "../utils/utils.hpp"
+#include "../utils/sfinae.hpp"
 
 
 namespace ft {
@@ -67,7 +68,7 @@ namespace ft {
 			}
 		template <typename InputIterator>
 			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
-				typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = true) :
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = true) :
 			_capacity(), _start(), _end(), _a(alloc) {
 				reserve(ft::distance(first, last));
 				_end = _start + ft::distance(first, last);
@@ -174,7 +175,7 @@ namespace ft {
 		/* --- modifiers -- */
 		template <class InputIterator>
 			void		assign (InputIterator first, InputIterator last,
-				typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = true) {
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = true) {
 				if (static_cast<size_type>(ft::distance(first, last)) > max_size())
 					throw std::length_error("vector");
 				size_t	i;
