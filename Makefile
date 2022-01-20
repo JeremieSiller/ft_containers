@@ -26,13 +26,12 @@ all: $(MINE) $(REAL)
 $(MINE): $(SRCS) $(INC)
 	$(CC) $(CFLAGS) $(SRCS) -o $@
 
-$(STACK): $(OBJ)
-	@$(CC) $(CFLAGS) -I $(INCLUDES) $(STACK_SOURCES) -o $@
+$(REAL): $(SRCS) $(INC)
+	$(CC) $(CFLAGS) $(SRCS) -o $@
 
 clean: fclean
 
 fclean:
-	rm -f $(STACK)
-	@echo cleaned!
+	rm -f $(MINE) $(REAL)
 
 re: fclean all

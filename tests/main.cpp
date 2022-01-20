@@ -319,8 +319,6 @@ int	main(void)
 		b++;
 	}
 	// --------------------
-	ft::map<int, int>::key_compare k = test.key_comp();
-	ft::map<int, int>::value_compare v = test.value_comp();
 	ft::map<int, int>::const_reverse_iterator	rb = test3.rbegin();
 	ft::map<int, int>::const_reverse_iterator	re = test3.rend();
 	while (rb != re)

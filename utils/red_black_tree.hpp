@@ -8,6 +8,9 @@
 #include "node.hpp"
 #include "iterator.hpp"
 #include "binary_search_tree_iterator.hpp"
+#ifndef nullptr
+# define nullptr NULL
+#endif
 
 /** --- testing --- **/
 #include <iostream>
