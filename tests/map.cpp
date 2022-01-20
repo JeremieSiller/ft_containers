@@ -55,10 +55,15 @@ int	main(void) {
 	
 	ft::map<int, int>::reverse_iterator rbg = test.rbegin();
 	ft::map<int, int>::reverse_iterator rbe = test.rend();
+	int	xd = 0;
 	while (rbg != rbe)
 	{
 		cout << rbg->first << " ";
+
 		rbg++;
+		if (xd % 2 == 0)
+			rbg--;
+		xd++;
 	}
 	cout << endl;
 	cout << test.upper_bound(17)->first << endl;

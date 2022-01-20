@@ -7,8 +7,6 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
-// #include <bits/cpp_type_traits.h>
-// #include <bits/stl_iterator_base_funcs.h>
 #include <stdexcept>
 #include <utility>
 #include <algorithm>
@@ -294,18 +292,8 @@ namespace ft {
 	template <class T, class Alloc>
 		bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
 			if (lhs.size() != rhs.size())
-				return (false);
-			typename vector<T,Alloc>::const_iterator	start_lhs = lhs.begin();
-			typename vector<T,Alloc>::const_iterator	start_rhs = rhs.begin();
-			typename vector<T,Alloc>::const_iterator	end_rhs = rhs.end();
-			while (start_rhs != end_rhs)
-			{
-				if (*start_rhs != *start_lhs)
-					return (false);
-				start_rhs++;
-				start_lhs++;
-			}
-			return(true);
+				return false;
+			return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
 	template <class T, class Alloc>
 			bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {

@@ -173,18 +173,9 @@ namespace ft {
 	
 	template< class Key, class T, class Compare, class Alloc >
 		bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs ) {
-			typename ft::map<Key,T,Compare,Alloc>::const_iterator	blhs = lhs.begin();
-			typename ft::map<Key,T,Compare,Alloc>::const_iterator	elhs = lhs.end();
-			typename ft::map<Key,T,Compare,Alloc>::const_iterator	brhs = lhs.begin();
 			if (lhs.size() != rhs.size())
 				return false;
-			while (blhs != elhs) {
-				if (*blhs != *brhs)
-					return false;
-				blhs++;
-				brhs++;
-			}
-			return true;
+			return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
 
 	template< class Key, class T, class Compare, class Alloc >
