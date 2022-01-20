@@ -1,20 +1,30 @@
 CC = clang++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-STACK = stack
+MINE = mine
+REAL = real
 
-STACK_SOURCES = tests/stack_test.cpp
+SRCS	=	tests/main.cpp
 
-INCLUDES = ./containers
+INC		=	containers/map.hpp						\
+			containers/set.hpp						\
+			containers/stack.hpp					\
+			containers/vector.hpp					\
+			utils/binary_search_tree_iterator.hpp	\
+			utils/iterator_traits.hpp				\
+			utils/iterator.hpp						\
+			utils/node.hpp							\
+			utils/pair.hpp							\
+			utils/random_access_iterator.hpp		\
+			utils/red_black_tree.hpp				\
+			utils/sfinae.hpp						\
+			utils/utils.hpp
 
-#COLORS
-Y = "\033[33m"
-R = "\033[31m"
-G = "\033[32m"
-B = "\033[34m"
-X = "\033[0m"
-UP = "\033[A"
-CUT = "\033[K"
+
+all: $(MINE) $(REAL)
+
+$(MINE): $(SRCS) $(INC)
+	$(CC) $(CFLAGS) $(SRCS) -o $@
 
 $(STACK): $(OBJ)
 	@$(CC) $(CFLAGS) -I $(INCLUDES) $(STACK_SOURCES) -o $@

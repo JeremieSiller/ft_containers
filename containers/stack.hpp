@@ -9,7 +9,7 @@ namespace ft
 {
 	template <
 		class T,
-		class _Container = vector<T> // change to ft!
+		class _Container = ft::vector<T>
 	> class stack
 	{
 	/* ----- typdefs ----- */

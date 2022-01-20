@@ -11,13 +11,11 @@ template<typename _value, typename vector>
 		class	random_access_iterator {
 		public:
 			typedef typename	vector::size_type				difference_type;
-			// typedef	typename	vector::value_type				value_type;
 			typedef				_value							value_type;
-			typedef				value_type*								pointer;
+			typedef				value_type*						pointer;
 			typedef				value_type&						reference;
 			typedef				ft::random_access_iterator_tag	iterator_category;
 		public:
-			// random_access_iterator(random_access_iterator const &in) : _ptr(in._ptr) { }
 			random_access_iterator() : _ptr() { };
 			random_access_iterator(pointer ptr) : _ptr(ptr) { };
 			random_access_iterator(const random_access_iterator<typename vector::value_type, vector> &in) : _ptr(in.base()) { }

@@ -9,11 +9,12 @@ class	binary_tree_iterator {
 public:
 	typedef	T		Node;
 
-	typedef			value							value_type;
-	typedef			value_type&						reference;
-	typedef			value_type*						pointer;
-	typedef			value_type						iterator_category;
-	typedef			size_t							difference_type;
+	typedef				value							value_type;
+	typedef				value_type&						reference;
+	typedef				value_type*						pointer;
+	typedef				value_type						iterator_category;
+	typedef				size_t							difference_type;
+	typedef	typename	ft::bidirectional_iterator_tag	iterator_catgeory;
 private:
 	Node	_current;
 public:
@@ -136,9 +137,5 @@ public:
 	}
 
 };
-	// template<typename T, typename container, typename value>
-	// 	bool	operator==(binary_tree_iterator<T, container, value> const &lhs, binary_tree_iterator<const typename container::Node *, container, const typename container::value_type> const &rhs) {
-	// 		return (lhs.base() == rhs.base());
-	// 	}
 
 #endif
