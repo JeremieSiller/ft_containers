@@ -28,6 +28,7 @@ namespace ft {
 		typedef 			ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 		typedef 			ft::reverse_iterator<iterator>							reverse_iterator;
 		typedef typename	allocator_type::size_type								size_type;
+		typedef typename	ft::iterator_traits<iterator>::difference_type			difference_type;
 	/* ----- attributes ----- */
 	private:
 		size_type		_capacity;
@@ -233,7 +234,7 @@ namespace ft {
 		};
 		template <class InputIterator>
 			void		insert (iterator position, InputIterator first, InputIterator last,
-				typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = true) {
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = true) {
 				size_type n = ft::distance(first, last);
 				if (n > max_size() || size() + n > max_size())
 					throw std::length_error("vector");

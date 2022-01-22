@@ -4,13 +4,14 @@
 #pragma once
 
 #include "utils.hpp"
+#include <cstddef>
 
 namespace ft
 {
 template<typename _value, typename vector>
 		class	random_access_iterator {
 		public:
-			typedef typename	vector::size_type				difference_type;
+			typedef				ptrdiff_t						difference_type;
 			typedef				_value							value_type;
 			typedef				value_type*						pointer;
 			typedef				value_type&						reference;

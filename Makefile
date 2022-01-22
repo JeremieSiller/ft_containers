@@ -24,7 +24,7 @@ INC		=	containers/map.hpp						\
 all: $(MINE) $(REAL)
 
 $(MINE): $(SRCS) $(INC)
-	$(CC) $(CFLAGS) $(SRCS) -o $@
+	$(CC) $(CFLAGS) $(SRCS) -o $@ -D FT
 
 $(REAL): $(SRCS) $(INC)
 	$(CC) $(CFLAGS) $(SRCS) -o $@

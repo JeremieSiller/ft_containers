@@ -1,6 +1,15 @@
 #ifndef NODE_ITERATOR_HPP
 # define NODE_ITERATOR_HPP
-#include <iostream>
+
+# include <iostream>
+# include <cstddef>
+
+/**
+ * defining nullptr to NULL to use on linux
+**/
+#ifndef nullptr
+# define nullptr NULL
+#endif
 
 #pragma once
 
@@ -13,7 +22,7 @@ public:
 	typedef				value_type&						reference;
 	typedef				value_type*						pointer;
 	typedef				value_type						iterator_category;
-	typedef				size_t							difference_type;
+	typedef				ptrdiff_t						difference_type;
 	typedef	typename	ft::bidirectional_iterator_tag	iterator_catgeory;
 private:
 	Node	_current;
