@@ -6,7 +6,7 @@
 4. [stack](#stack)
 
 ## About
-ft_container is a porject of the 42 core curriculum. It's purpose is to learn about different data structures and its advantages and disadvantages.
+ft_containers is a porject of the 42 core curriculum. It's purpose is to learn about different data structures and its advantages and disadvantages.
 The task is to rewrite 4 containers of the standard template libray ([STL]), the vector, the map, the set and the stack.
 
 **how to use:**
@@ -43,7 +43,7 @@ ft::stack<int> st;
 
 The vector is a simple dynamic array where each element lies unsorted behind each other in memory.
 The biggest aspect of rewriting the vector is the internal memory management. If a vector runs out of storage it has to reallocate and 
-therefore copy everything into the newly allocated storage.
+therefore copy everything into the newly allocated space.
 
 **advantages:**
 - random access (instant access of elements)
