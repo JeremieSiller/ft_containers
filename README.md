@@ -2,7 +2,7 @@
 
 1. [About](#about)
 2. [vector](#vector)
-3. [map / set](#map/set)
+3. [map / set](#mapandset)
 4. [stack](#stack)
 
 ## About
@@ -54,7 +54,7 @@ therefore copy everything into the newly allocated space.
 - high memory usage when copying
 - preallocates memory to avoid running out of storage (allocates unused memory)
 
-## map/set 
+## map and set 
 
 **Description:**
 
