@@ -4,8 +4,6 @@
 2. [vector](#vector)
 3. [map / set](#map/set)
 4. [stack](#stack)
-5.
-
 
 ## About
 ft_container is a porject of the 42 core curriculum. It's purpose is to learn about different data structures and its advantages and disadvantages.
