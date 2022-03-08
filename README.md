@@ -58,11 +58,11 @@ therefore copy everything into the newly allocated space.
 
 **Description:**
 
-The map and set are sorted containers. While set sorts the elements by using itself as the keyvalue, map takes a second template paramter as the key.
-Both containers usually use a binary search tree (BST) internaly to store all elements. In most cases the use tree is a red-black-tree (self-balancing) which I
+The map and set are sorted containers. While set sorts the elements by using the value as the keyvalue, map takes a second template parameter as the key.
+Both containers usually use a binary search tree (BST) internaly to store all elements. In most cases the used tree is a red-black-tree (self-balancing) which I
 also chose for this project.
 Instead of allocating everything in one block like the vector does, a BST allocates nodes and links them with pointers. To avoid extremly slow insertion and lookup
-times the BST is red-black-tree. A red-black-tree follows these 5 rules to avoid unbalancing:
+times the BST is a red-black-tree. A red-black-tree follows these 5 rules to avoid unbalancing:
 - Every node has a colour either red or black.
 - The root of the tree is always black.
 - a red node cannot have a red parent or red child
